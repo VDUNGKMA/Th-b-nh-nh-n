@@ -1,0 +1,11 @@
+<JavaCardSolution name="NHOM6">
+    <JavaCardProjects>
+        <JavaCardProject path="NHOM6.jcproj" />
+    </JavaCardProjects>
+    <Build>
+        <BuildDependon />
+    </Build>
+    <Platform>
+        <ChipPack Name="JAVACOS" />
+    </Platform>
+</JavaCardSolution>

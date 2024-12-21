@@ -1,14 +1,14 @@
 package Hospital;
 
-import CustomerCard.SmartCardWord;
-import CustomerCard.InfoPatient;
+import Patient.SmartCardWord;
+import Patient.InfoPatient;
 import java.awt.Font;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
@@ -37,35 +37,6 @@ public class FormPay extends javax.swing.JFrame {
     }
 
     public void addTable(String Name, Double Price) {
-//        Double tqty;
-//
-//        String Qty = JOptionPane.showInputDialog("Nhập số lượng");
-//        if (Qty == null) {
-//            Qty = "";
-//        }
-//        if (Qty.isEmpty()) {
-////            tqty = Double.valueOf(0);
-//            tqty = 0.0;
-//        } else {
-//
-//            tqty = Double.valueOf(Qty);
-//            if (tqty > 0) {
-//                Double Tot_Price = Price * tqty;
-//
-//                DecimalFormat df = new DecimalFormat("00");
-//                String d11 = df.format(Tot_Price);
-//
-//                DefaultTableModel dt = (DefaultTableModel) jTable1.getModel();
-//
-//                Vector v = new Vector();
-//                v.add(Name);
-//                v.add(Qty);
-//                v.add(d11);
-//                dt.addRow(v);
-//            }
-//
-//        }
-//        cart_cal();
         int quantity;
 
         try {
@@ -102,18 +73,6 @@ public class FormPay extends javax.swing.JFrame {
     }
 
     public void cart_cal() {
-
-//        int numofrow = jTable1.getRowCount();
-//        double total = 0;
-//        for (int i = 0; i < numofrow; i++) {
-//            double value = Double.parseDouble(jTable1.getValueAt(i, 2).toString());
-//            total += value;
-//
-//        }
-//
-//        DecimalFormat df = new DecimalFormat("00");
-//        String d1 = df.format(total);
-//        Too.setText(d1);
         int numofrow = jTable1.getRowCount();
         double total = 0;
 
@@ -145,6 +104,7 @@ public class FormPay extends javax.swing.JFrame {
         btnAdd = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        btnXoa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -156,12 +116,12 @@ public class FormPay extends javax.swing.JFrame {
         jTable2.setForeground(new java.awt.Color(53, 66, 89));
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"#K001", "Nabumetone",  new Double(50000.0)},
-                {"#S002", "Diclofenac",  new Double(2000.0)},
-                {"#S003", "Paracetamol",  new Double(30000.0)},
-                {"#C002", "ibuprofen",  new Double(70000.0)},
-                {"#SPF2", "Panadol",  new Double(40000.0)},
-                {"#SPF3", "Aspirin",  new Double(600000.0)}
+                {"#K001", "Nabumetone",  new Double(200000.0)},
+                {"#S002", "Diclofenac",  new Double(2000000.0)},
+                {"#S003", "Paracetamol",  new Double(500000.0)},
+                {"#C002", "ibuprofen",  new Double(10000.0)},
+                {"#SPF2", "Panadol",  new Double(111111.0)},
+                {"#SPF3", "Aspirin",  new Double(22222.0)}
             },
             new String [] {
                 "ID", "Tên sản phẩm", "Đơn giá"
@@ -170,11 +130,19 @@ public class FormPay extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.Double.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, true
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
+        jTable2.setRowHeight(30);
         jTable2.setSelectionBackground(new java.awt.Color(0, 102, 102));
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -197,7 +165,7 @@ public class FormPay extends javax.swing.JFrame {
                 java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, false
+                false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -272,11 +240,21 @@ public class FormPay extends javax.swing.JFrame {
             }
         });
 
+        btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(367, 367, 367))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -285,16 +263,17 @@ public class FormPay extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnXoa)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(367, 367, 367))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
+                .addGap(42, 42, 42)
+                .addComponent(btnXoa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -315,12 +294,13 @@ public class FormPay extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -334,34 +314,44 @@ public class FormPay extends javax.swing.JFrame {
         int numrow = jTable1.getRowCount();
         int tot = 0;
         for (int i = 0; i < numrow; i++) {
-            int val = Integer.parseInt(jTable1.getValueAt(i, 2).toString());
-            tot += val;
+            try {
+                // Sanitize and parse the value
+                String rawValue = jTable1.getValueAt(i, 2).toString();
+                String sanitizedValue = rawValue.replaceAll("[^\\d]", ""); // Remove non-numeric characters
+                int val = Integer.parseInt(sanitizedValue);
+                tot += val;
+            } catch (NumberFormatException e) {
+                System.err.println("Error parsing value: " + jTable1.getValueAt(i, 2));
+                JOptionPane.showMessageDialog(this, "Invalid number format in row " + (i + 1));
+                return;
+            }
         }
+
         customer.setPay(tot);
         Too.setText(Integer.toString(tot));
 
         FormVerifyPay pay = new FormVerifyPay(customer);
-        System.out.println("get customer" + pay.customer.getPay());
+        System.out.println("get customer: " + pay.customer.getPay());
         pay.setVisible(true);
         pay.setLocationRelativeTo(null);
         this.setVisible(false);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-        // TODO add your handling code here:
-        TableModel model = jTable2.getModel();
-        int indexs[] = jTable2.getSelectedRows();
-//        Object[] row = new Object[3];
-        DefaultTableModel model2 = (DefaultTableModel) jTable1.getModel();
-        for (int i = 0; i < indexs.length; i++) {
 
-//            row[0] = model.getValueAt(indexs[i], 0);
-//            row[2] = model.getValueAt(indexs[i], 2);
-//            String name = String.valueOf(row[2]);
-//            addTable(String.valueOf(row[0]), Double.parseDouble(name));
-            String id = model.getValueAt(indexs[i], 0).toString(); // Get product ID
-            double price = Double.parseDouble(model.getValueAt(indexs[i], 2).toString()); // Parse price directly
-            addTable(id, price); // Call addTable directly with parsed values
+        if (evt.getClickCount() == 2&& SwingUtilities.isLeftMouseButton(evt)) {
+            // Lấy thông tin từ dòng được chọn
+            int selectedRow = jTable2.getSelectedRow();
+            if (selectedRow != -1) { // Kiểm tra xem có dòng nào được chọn không
+                TableModel model = jTable2.getModel();
+                String id = model.getValueAt(selectedRow, 0).toString(); // Lấy ID sản phẩm
+                double price = Double.parseDouble(model.getValueAt(selectedRow, 2).toString()); // Lấy giá
+
+                // Hiển thị form nhập số lượng
+                addTable(id, price);
+            } else {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm trước!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jTable2MouseClicked
     public void addProductToTable(String id, String name, double price) {
@@ -369,30 +359,7 @@ public class FormPay extends javax.swing.JFrame {
         tableModel.addRow(new Object[]{id, name, price});
     }
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-//        String productName = JOptionPane.showInputDialog("Nhập tên sản phẩm:");
-//        if (productName == null || productName.trim().isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Tên sản phẩm không được để trống!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
-//
-//        String productPriceStr = JOptionPane.showInputDialog("Nhập đơn giá sản phẩm (VNĐ):");
-//        if (productPriceStr == null || productPriceStr.trim().isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Đơn giá không được để trống!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
-//
-//        try {
-//            double productPrice = Double.parseDouble(productPriceStr);
-//            productCount++; // Tăng số lượng sản phẩm
-//            String productId = String.format("#%03d", productCount);
-//
-//            DefaultTableModel tableModel = (DefaultTableModel) jTable2.getModel();
-//            tableModel.addRow(new Object[]{productId, productName, productPrice});
-//
-//            JOptionPane.showMessageDialog(this, "Thêm sản phẩm thành công!", "Thành công", JOptionPane.INFORMATION_MESSAGE);
-//        } catch (NumberFormatException e) {
-//            JOptionPane.showMessageDialog(this, "Đơn giá phải là số!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-//        }
+
         String productName = JOptionPane.showInputDialog("Nhập tên sản phẩm:");
         if (productName == null || productName.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Tên sản phẩm không được để trống!", "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -417,53 +384,71 @@ public class FormPay extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-         int selectedRow = jTable2.getSelectedRow(); // Lấy hàng được chọn
-    if (selectedRow == -1) {
-        JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
+        int selectedRow = jTable2.getSelectedRow(); // Lấy hàng được chọn
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
-    int confirm = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xóa sản phẩm này?", "Xác nhận", JOptionPane.YES_NO_OPTION);
-    if (confirm == JOptionPane.YES_OPTION) {
-        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        model.removeRow(selectedRow); // Xóa hàng khỏi bảng
+        int confirm = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xóa sản phẩm này?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+            model.removeRow(selectedRow); // Xóa hàng khỏi bảng
 
-        JOptionPane.showMessageDialog(this, "Xóa sản phẩm thành công!", "Thành công", JOptionPane.INFORMATION_MESSAGE);
-    }
+            JOptionPane.showMessageDialog(this, "Xóa sản phẩm thành công!", "Thành công", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-       int selectedRow = jTable2.getSelectedRow(); // Lấy hàng được chọn
-    if (selectedRow == -1) {
-        JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm để sửa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
+        int selectedRow = jTable2.getSelectedRow(); // Lấy hàng được chọn
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm để sửa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
-    // Lấy dữ liệu hiện tại
-    DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-    String currentName = model.getValueAt(selectedRow, 1).toString();
-    String currentPrice = model.getValueAt(selectedRow, 2).toString();
+        // Lấy dữ liệu hiện tại
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        String currentName = model.getValueAt(selectedRow, 1).toString();
+        String currentPrice = model.getValueAt(selectedRow, 2).toString();
 
-    // Hiển thị dialog để nhập dữ liệu mới
-    String newName = JOptionPane.showInputDialog(this, "Nhập tên sản phẩm mới:", currentName);
-    if (newName == null || newName.trim().isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Tên sản phẩm không được để trống!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        // Hiển thị dialog để nhập dữ liệu mới
+        String newName = JOptionPane.showInputDialog(this, "Nhập tên sản phẩm mới:", currentName);
+        if (newName == null || newName.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Tên sản phẩm không được để trống!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    String newPriceStr = JOptionPane.showInputDialog(this, "Nhập đơn giá mới:", currentPrice);
-    try {
-        double newPrice = Double.parseDouble(newPriceStr);
+        String newPriceStr = JOptionPane.showInputDialog(this, "Nhập đơn giá mới:", currentPrice);
+        try {
+            double newPrice = Double.parseDouble(newPriceStr);
 
-        // Cập nhật dữ liệu trong bảng
-        model.setValueAt(newName, selectedRow, 1);
-        model.setValueAt(newPrice, selectedRow, 2);
+            // Cập nhật dữ liệu trong bảng
+            model.setValueAt(newName, selectedRow, 1);
+            model.setValueAt(newPrice, selectedRow, 2);
 
-        JOptionPane.showMessageDialog(this, "Cập nhật sản phẩm thành công!", "Thành công", JOptionPane.INFORMATION_MESSAGE);
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Đơn giá phải là số!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-    }
+            JOptionPane.showMessageDialog(this, "Cập nhật sản phẩm thành công!", "Thành công", JOptionPane.INFORMATION_MESSAGE);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Đơn giá phải là số!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        int selectedRow = jTable1.getSelectedRow(); // Lấy dòng được chọn
+    if (selectedRow != -1) { // Kiểm tra xem có dòng nào được chọn không
+        int confirm = JOptionPane.showConfirmDialog(
+            this, 
+            "Bạn có chắc muốn xóa sản phẩm này?", 
+            "Xác nhận", 
+            JOptionPane.YES_NO_OPTION
+        );
+        if (confirm == JOptionPane.YES_OPTION) {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.removeRow(selectedRow); // Xóa dòng khỏi bảng
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+    }
+    }//GEN-LAST:event_btnXoaActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -505,6 +490,7 @@ public class FormPay extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnXoa;
     private javax.swing.JButton jButton13;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;

@@ -5,15 +5,16 @@
  */
 package Hospital;
 
-import CustomerCard.DBConnection;
-import CustomerCard.FormVerify;
-import CustomerCard.RandomString;
-import CustomerCard.SmartCardWord;
-import CustomerCard.InfoPatient;
+import Patient.DBConnection;
+import Patient.FormVerify;
+import Patient.RandomString;
+import Patient.SmartCardWord;
+import Patient.InfoPatient;
 import java.awt.Font;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
+import java.security.MessageDigest;
 import java.security.PublicKey;
 import java.security.Signature;
 import java.security.spec.X509EncodedKeySpec;
@@ -21,15 +22,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
-/**
- *aa
- * @author Nga
- */
+
 public class FormVerifyPay extends javax.swing.JFrame {
+
     ImageIcon icon = new ImageIcon("src/img/connect_failed.png");
     ImageIcon icon1 = new ImageIcon("src/img/icon_success.png");
     /**
@@ -48,11 +46,12 @@ public class FormVerifyPay extends javax.swing.JFrame {
         System.out.println("getPay " + customer.getPay());
         setLocationRelativeTo(null);
     }
+
     public FormVerifyPay(InfoPatient customer) {
-//        initComponents();
-//        this.customer = customer;
-//        System.out.println("getPay " + customer.getPay());
-//        setLocationRelativeTo(null);
+        initComponents();
+        this.customer = customer;
+        System.out.println("getPay " + customer.getPay());
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -183,195 +182,115 @@ public class FormVerifyPay extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bntEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntEnterActionPerformed
-//        // TODO add your handling code here:
-//        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Times New Roman", Font.BOLD, 24)));     
-//        boolean verify;
-//        if (txtPin.getText().equals("")) {
-//            JOptionPane.showMessageDialog(null, "Mời nhập mã pin!","", JOptionPane.INFORMATION_MESSAGE, icon);
-//        } else {
-//            pin = new String(txtPin.getPassword());
-//            String login = card.login(card.hexStringToByteArray(String.format("%x", new BigInteger(1, pin.getBytes(/*YOUR_CHARSET?*/)))));
-//            switch (login) {
-//                case "7":
-//                    JOptionPane.showMessageDialog(null, "Nhập sai mã pin. Mời nhập lại!", "", JOptionPane.INFORMATION_MESSAGE, icon);
-//                    break;
-//                case "6":
-//                    JOptionPane.showMessageDialog(null, "Nhập sai mã pin. Mời nhập lại!", "", JOptionPane.INFORMATION_MESSAGE, icon);
-//                    break;
-//                case "5":
-//                    JOptionPane.showMessageDialog(null, "Nhập sai mã pin. Mời nhập lại!", "", JOptionPane.INFORMATION_MESSAGE, icon);
-//                    break;
-//                case "4":
-//                    JOptionPane.showMessageDialog(null, "Nhập sai mã pin. Mời nhập lại!", "", JOptionPane.INFORMATION_MESSAGE, icon);
-//                    break;
-//                case "1":
-//                    //Can xac thuc o day
-//                    String randomText = str.getAlphaNumericString(10);
-//                    String pinReq = String.format("%x", new BigInteger(1, pin.getBytes()));
-//                    String random = String.format("%x", new BigInteger(1, randomText.getBytes()));
-//                    String data = pinReq + "03" + random;
-//                    signData = card.hexStringToByteArray(data);
-//                    sign = card.getSign(signData);
-//                    //lay id
-//                    String idT = card.getId();
-//                    byte[] bytes = card.hexStringToByteArray(idT);
-//                    String id = new String(bytes, StandardCharsets.UTF_8);
-//                    System.out.println("id = " + id);
-//                    try {
-//                        verify = Verify_Digital_Signature(signData, card.hexStringToByteArray(sign), id);
-//                        System.out.println("Verify: " + verify);
-//                        if (verify) {
-//                            String temp = String.valueOf(customer.getPay());
-//                            System.out.println(temp);
-//                            String money;
-//                            if (temp.length() % 2 == 0) {
-//                                money = temp;
-//                            } else {
-//                                money = "0" + temp;
-//                            }
-//                            System.out.println("money " + money);
-//                            String options[]=new String[2];
-//                            options[0]="Có";
-//                            options[1]="Không";
-//                            int choose= JOptionPane.showOptionDialog(null, "Sử dụng tích điểm!", "Cảm ơn quý khách!", 0, QUESTION_MESSAGE, icon1, options, null);
-//                            if (choose == JOptionPane.YES_OPTION) {
-//                                money = "01" + money;
-//                            } else {
-//                                money = "00" + money;
-//                            }
-//                            String pay = card.pay(card.hexStringToByteArray(money));
-//
-//                            switch (pay) {
-//                                case "1":
-//                                    JOptionPane.showMessageDialog(null, "Thanh toán thành công! Cảm ơn quý khách!", "", JOptionPane.INFORMATION_MESSAGE, icon1);
-//                                    this.setVisible(false);
-//                                    break;
-//                                case "0":
-//                                    JOptionPane.showMessageDialog(null, "Thanh toán không thành công!", "", JOptionPane.INFORMATION_MESSAGE, icon);
-//                                    this.setVisible(false);
-//                                    break;
-//                            }
-//                        } else {
-//                            JOptionPane.showMessageDialog(null, "Có lỗi trong quá trình xác thực, vui lòng thử lại!", "", JOptionPane.INFORMATION_MESSAGE, icon);
-//                        }
-//                    } catch (Exception ex) {
-//                        JOptionPane.showMessageDialog(null, "Lỗi rồi", "", JOptionPane.INFORMATION_MESSAGE, icon);
-//                        Logger.getLogger(FormVerify.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//
-//                    break;
-//                case "2":
-//                    JOptionPane.showMessageDialog(null, "Thẻ đã bị khóa", "", JOptionPane.INFORMATION_MESSAGE, icon);
-//                    break;
-//                default:
-//                    break;
-//
-//            }
-//            
-//        }
- UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Times New Roman", Font.BOLD, 24)));     
-    boolean verify;
-    if (txtPin.getText().equals("")) {
-        JOptionPane.showMessageDialog(null, "Mời nhập mã pin!", "", JOptionPane.INFORMATION_MESSAGE, icon);
-    } else {
-        pin = new String(txtPin.getPassword());
-        String login = card.login(card.hexStringToByteArray(String.format("%x", new BigInteger(1, pin.getBytes()))));
-        switch (login) {
-            case "7":
-            case "6":
-            case "5":
-            case "4":
-                JOptionPane.showMessageDialog(null, "Nhập sai mã pin. Mời nhập lại!", "", JOptionPane.INFORMATION_MESSAGE, icon);
-                break;
-            case "1":
-                String randomText = str.getAlphaNumericString(10);
-                String pinReq = String.format("%x", new BigInteger(1, pin.getBytes()));
-                String random = String.format("%x", new BigInteger(1, randomText.getBytes()));
-                String data = pinReq + "03" + random;
-                signData = card.hexStringToByteArray(data);
-                sign = card.getSign(signData);
-                String idT = card.getId();
-                byte[] bytes = card.hexStringToByteArray(idT);
-                String id = new String(bytes, StandardCharsets.UTF_8);
-                try {
-                    verify = Verify_Digital_Signature(signData, card.hexStringToByteArray(sign), id);
-                    if (verify) {
-                        String temp = String.valueOf(customer.getPay());
-                        String money = temp.length() % 2 == 0 ? temp : "0" + temp;
 
-                        // "Sử dụng bảo hiểm"
-                        String[] options = {"Có", "Không"};
-                        int choose = JOptionPane.showOptionDialog(
-                            null,
-                            "Sử dụng bảo hiểm?",
-                            "Cảm ơn quý khách!",
-                            JOptionPane.YES_NO_OPTION,
-                            QUESTION_MESSAGE,
-                            icon1,
-                            options,
-                            null
-                        );
+        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Times New Roman", Font.BOLD, 24)));
+        boolean verify;
+        if (txtPin.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Mời nhập mã pin!", "", JOptionPane.INFORMATION_MESSAGE, icon);
+        } else {
+            try {
+                char[] pinChars = txtPin.getPassword();
+                String pin = new String(pinChars);
+//        pin = new String(txtPin.getPassword());
+                // Băm mã PIN bằng SHA-256
+                MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
+                byte[] pinHash = sha256.digest(pin.getBytes(StandardCharsets.UTF_8));
+                String login = card.login(pinHash);
+                switch (login) {
+                    case "7":
+                    case "6":
+                    case "5":
+                    case "4":
+                        JOptionPane.showMessageDialog(null, "Nhập sai mã pin. Mời nhập lại!", "", JOptionPane.INFORMATION_MESSAGE, icon);
+                        break;
+                    case "1":
+                        String randomString = str.getAlphaNumericString(10);
+                        String randomHex = String.format("%x", new BigInteger(1, randomString.getBytes(StandardCharsets.UTF_8)));
+                        byte[] pinBytes = pin.getBytes(StandardCharsets.UTF_8);
+                        String pinHex = String.format("%x", new BigInteger(1, pinBytes));
+                        String dataToSign = pinHex + "03" + randomHex;
+                        signData = card.hexStringToByteArray(dataToSign);
+                        sign = card.getSign(signData);
+                        String id = card.getId();
+                        try {
+                            verify = Verify_Digital_Signature(signData, card.hexStringToByteArray(sign), id);
+                            if (verify) {
+                                long temp1 = customer.getPay();
+                                String temp = String.valueOf(customer.getPay());
+                                String[] options = {"Có", "Không"};
+                                int choose = JOptionPane.showOptionDialog(
+                                        null,
+                                        "Sử dụng bảo hiểm? ",
+                                        "",
+                                        JOptionPane.YES_NO_OPTION,
+                                        JOptionPane.QUESTION_MESSAGE,
+                                        null, // Nếu muốn thêm icon, thay null bằng hình ảnh
+                                        options,
+                                        null
+                                );
 
-                        money = (choose == JOptionPane.YES_OPTION ? "01" : "00") + money;
-                        String pay = card.pay(card.hexStringToByteArray(money));
+                                boolean useInsurance = (choose == JOptionPane.YES_OPTION);
+                                if (useInsurance) {
+                                    JOptionPane.showMessageDialog(rootPane, "Tổng hóa đơn: " + temp1 * 0.2 + " VND");
 
-                        switch (pay) {
-                            case "1":
-                                JOptionPane.showMessageDialog(null, "Thanh toán thành công! Cảm ơn quý khách!", "", JOptionPane.INFORMATION_MESSAGE, icon1);
-                                this.setVisible(false);
-                                break;
-                            case "0":
-                                JOptionPane.showMessageDialog(null, "Thanh toán không thành công!", "", JOptionPane.INFORMATION_MESSAGE, icon);
-                                this.setVisible(false);
-                                break;
+                                } else {
+                                    JOptionPane.showMessageDialog(rootPane, "Tổng hóa đơn: " + temp1 + " VND");
+                                }
+                                long amount = customer.getPay();
+                                byte[] amountBytes = longToBytes(amount);
+                                card.pay(amountBytes, useInsurance);
+                                System.out.println("check so du sau khi thanh toan " + card.checkBalance());                          
+
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Có lỗi trong quá trình xác thực, vui lòng thử lại!", "", JOptionPane.INFORMATION_MESSAGE, icon);
+                            }
+                        } catch (Exception ex) {
+                            JOptionPane.showMessageDialog(null, "Lỗi rồi", "", JOptionPane.INFORMATION_MESSAGE, icon);
+                            Logger.getLogger(FormVerify.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Có lỗi trong quá trình xác thực, vui lòng thử lại!", "", JOptionPane.INFORMATION_MESSAGE, icon);
-                    }
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Lỗi rồi", "", JOptionPane.INFORMATION_MESSAGE, icon);
-                    Logger.getLogger(FormVerify.class.getName()).log(Level.SEVERE, null, ex);
+                          this.dispose();
+                        break;
+                    case "2":
+                        JOptionPane.showMessageDialog(null, "Thẻ đã bị khóa", "", JOptionPane.INFORMATION_MESSAGE, icon);
+                        break;
+                    default:
+                        break;
                 }
-                break;
-            case "2":
-                JOptionPane.showMessageDialog(null, "Thẻ đã bị khóa", "", JOptionPane.INFORMATION_MESSAGE, icon);
-                break;
-            default:
-                break;
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi trong quá trình xác thực!", "", JOptionPane.ERROR_MESSAGE);
+                Logger.getLogger(FormVerify.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
-    }
     }//GEN-LAST:event_bntEnterActionPerformed
-//    public boolean Verify_Digital_Signature(byte[] input, byte[] signatureToVerify, String id) throws Exception {
-//        String str_key = DBConnection.getPublicKey(id);
-//        System.out.println("str_key" + str_key);
-//        // byte[] pub_key = Base64.getDecoder().decode(str_key);
-//        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-//        X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(new BASE64Decoder().decodeBuffer(str_key));
-//        PublicKey pub = keyFactory.generatePublic(publicKeySpec);
-//        Signature signature = Signature.getInstance("SHA1withRSA");
-//        signature.initVerify(pub);
-//        signature.update(input);
-//        return signature.verify(signatureToVerify);
-//    }
-public boolean Verify_Digital_Signature(byte[] input, byte[] signatureToVerify, String id) throws Exception {
-    String str_key = DBConnection.getPublicKey(id);
-    System.out.println("str_key: " + str_key);
+    public static byte[] longToBytes(long value) {
+        byte[] result = new byte[8]; // Một số long có kích thước 8 byte
+        for (int i = 7; i >= 0; i--) {
+            result[i] = (byte) (value & 0xFF); // Lấy 8 bit thấp nhất
+            value >>= 8; // Dịch phải 8 bit để lấy byte tiếp theo
+        }
+        return result;
+    }
 
-    // Sử dụng Base64 từ java.util để giải mã khóa công khai
-    byte[] decodedKey = java.util.Base64.getDecoder().decode(str_key);
+    public boolean Verify_Digital_Signature(byte[] input, byte[] signatureToVerify, String id) throws Exception {
+        String str_key = DBConnection.getPublicKey(id);
+        System.out.println("str_key: " + str_key);
 
-    // Tạo PublicKey từ khóa công khai đã giải mã
-    KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-    X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(decodedKey);
-    PublicKey pub = keyFactory.generatePublic(publicKeySpec);
+        // Sử dụng Base64 từ java.util để giải mã khóa công khai
+        byte[] decodedKey = java.util.Base64.getDecoder().decode(str_key);
 
-    // Khởi tạo và xác thực chữ ký số
-    Signature signature = Signature.getInstance("SHA1withRSA");
-    signature.initVerify(pub);
-    signature.update(input);
+        // Tạo PublicKey từ khóa công khai đã giải mã
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(decodedKey);
+        PublicKey pub = keyFactory.generatePublic(publicKeySpec);
 
-    return signature.verify(signatureToVerify);
-}
+        // Khởi tạo và xác thực chữ ký số
+        Signature signature = Signature.getInstance("SHA1withRSA");
+        signature.initVerify(pub);
+        signature.update(input);
+
+        return signature.verify(signatureToVerify);
+    }
 
     /**
      * @param args the command line arguments

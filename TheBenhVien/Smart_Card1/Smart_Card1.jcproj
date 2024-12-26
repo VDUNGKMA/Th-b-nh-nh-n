@@ -1,0 +1,37 @@
+<JavaCardProject name="Smart_Card1">
+<USER>
+<PKG name="Bai_TH1" aid="A0 00 00 01 51 00 00" major="1" minor="0">
+<APPLET aid="A0 00 00 01 51 00 00 01" instanceaid="" parameter="" authority="" privileges="" index="-14424" name="Bai1"/>
+<APPLET aid="A0 00 00 01 51 00 00 02" instanceaid="" parameter="" authority="" privileges="" index="1208" name="Bai2"/>
+<APPLET aid="A0 00 00 01 51 00 00 03" instanceaid="" parameter="" authority="" privileges="" index="-2992" name="Bai3"/>
+<APPLET aid="A0 00 00 01 51 00 00 04" instanceaid="" parameter="" authority="" privileges="" index="-2512" name="Bai4"/>
+<APPLET aid="A0 00 00 01 51 00 00 05" instanceaid="" parameter="" authority="" privileges="" index="-8752" name="Bai5"/>
+</PKG>
+<PKG name="BaiTH2" aid="11 22 33 44 55" major="1" minor="0">
+<APPLET aid="11 22 33 44 55 00" instanceaid="" parameter="" authority="" privileges="" index="-18520" name="BaiTH2"/>
+<APPLET aid="11 22 33 44 55 01" instanceaid="" parameter="" authority="" privileges="" index="-7352" name="Bai1"/>
+</PKG>
+<PKG name="BaI_TH3" aid="A1 B2 C3 D4 E5" major="1" minor="0">
+<APPLET aid="A1 B2 C3 D4 E5 01" instanceaid="" parameter="" authority="" privileges="" index="22488" name="BaI_TH3"/>
+</PKG>
+<PKG name="Bai_TH4" aid="44 49 45 4D 5F 54 48" major="1" minor="0">
+<APPLET aid="44 49 45 4D 5F 54 48 49" instanceaid="" parameter="" authority="" privileges="" index="-32536" name="Bai_TH4"/>
+</PKG>
+<PKG name="Conect_Card" aid="99 88 77 66 55" major="1" minor="0">
+<APPLET aid="99 88 77 66 55 00" instanceaid="" parameter="" authority="" privileges="" index="-31096" name="Conect_Card"/>
+</PKG>
+<PKG name="TheThongMinhMP" aid="11 22 33 44 55 66 00" major="1" minor="0">
+<APPLET aid="11 22 33 44 55 66 00 01" instanceaid="" parameter="" authority="" privileges="" index="-8456" name="TheThongMinhMP"/>
+</PKG>
+<PKG name="SCard" aid="00 00 00 00 09" major="1" minor="0">
+<APPLET aid="00 00 00 00 09 00" instanceaid="" parameter="" authority="" privileges="" index="-12984" name="SCard"/>
+</PKG>
+<PKG name="EncryptionDecryptionApp" aid="12 34 56 78 99" major="1" minor="0">
+<APPLET aid="12 34 56 78 99 00" instanceaid="" parameter="" authority="" privileges="" index="23480" name="EncryptionDecryptionApp"/>
+</PKG>
+<PKG name="Bai5_ExtendedApdu" aid="10 10 10 10 10" major="1" minor="0">
+<APPLET aid="10 10 10 10 10 01" instanceaid="" parameter="" authority="" privileges="" index="12120" name="Bai5_ExtendedApdu"/>
+</PKG>
+<Libs/>
+</USER>
+</JavaCardProject>

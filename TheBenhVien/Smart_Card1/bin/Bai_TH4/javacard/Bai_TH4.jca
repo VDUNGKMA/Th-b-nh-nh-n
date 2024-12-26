@@ -1,0 +1,365 @@
+// converted by version  [v3.0.4]
+// on Wed Dec 18 15:04:41 ICT 2024
+
+.package Bai_TH4 {
+	.aid 0x44:0x49:0x45:0x4D:0x5F:0x54:0x48;
+	.version 1.0;
+
+	.imports {
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x1 1.5;		//javacard/framework
+		0xA0:0x0:0x0:0x0:0x62:0x0:0x1 1.0;		//java/lang
+	}
+
+	.applet {
+		0x44:0x49:0x45:0x4D:0x5F:0x54:0x48:0x49 Bai_TH4;
+	}
+
+	.constantPool {
+		// 0
+		instanceFieldRef byte[] Bai_TH4/diemThi;
+		// 1
+		instanceFieldRef byte Bai_TH4/currentSubjectCount;
+		// 2
+		staticMethodRef 0.3.0()V;		// javacard/framework/Applet.<init>()V
+		// 3
+		.classRef Bai_TH4;
+		// 4
+		staticMethodRef Bai_TH4/<init>()V;
+		// 5
+		virtualMethodRef 0.3.1()V;		// register()V
+		// 6
+		virtualMethodRef 0.3.3()Z;		// selectingApplet()Z
+		// 7
+		virtualMethodRef 0.10.1()[B;		// getBuffer()[B
+		// 8
+		staticMethodRef Bai_TH4/inputScore(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 9
+		staticMethodRef Bai_TH4/printScores(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 10
+		staticMethodRef Bai_TH4/updateScore(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 11
+		staticMethodRef Bai_TH4/deleteScore(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 12
+		staticMethodRef 0.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+		// 13
+		staticMethodRef 0.16.2([BS[BSS)S;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+		// 14
+		virtualMethodRef 0.10.8(SS)V;		// setOutgoingAndSend(SS)V
+	}
+
+	.class public Bai_TH4 0 extends 0.3 {		// extends javacard/framework/Applet
+
+		.fields {
+			private byte[] diemThi 0;		// [B
+			private byte currentSubjectCount 1;		// B
+			private static final byte[] APPLET_AID = {68,73,69,77,95,84,72,73};		// [B
+			private static final byte[] STUDENT_ID = {83,86,48,49};		// [B
+			private static final byte MAX_SUBJECTS = 9;		// B
+			private static final byte INS_INPUT_SCORE = 1;		// B
+			private static final byte INS_PRINT_SCORES = 2;		// B
+			private static final byte INS_UPDATE_SCORE = 3;		// B
+			private static final byte INS_DELETE_SCORE = 4;		// B
+		}
+
+		.publicMethodTable 7 {
+			equals(Ljava/lang/Object;)Z;
+			register()V;
+			register([BSB)V;
+			selectingApplet()Z;
+			deselect()V;
+			getShareableInterfaceObject(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable;;
+			select()Z;
+			process(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method private <init>()V {
+			.stack 2;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 2;		// javacard/framework/Applet.<init>()V
+					aload_0;
+					bspush 18;
+					newarray 11;
+					putfield_a 0;		// reference Bai_TH4/Bai_TH4.diemThi
+					aload_0;
+					sconst_0;
+					putfield_b 1;		// byte Bai_TH4/Bai_TH4.currentSubjectCount
+					return;
+		}
+
+		.method public static install([BSB)V 0 {
+			.stack 2;
+			.locals 0;
+
+				L0:	new 3;		// Bai_TH4/Bai_TH4
+					dup;
+					invokespecial 4;		// Bai_TH4/Bai_TH4.<init>()V
+					invokevirtual 5;		// register()V
+					return;
+		}
+
+		.method public process(Ljavacard/framework/APDU;)V 7 {
+			.stack 2;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_0;
+					invokevirtual 6;		// selectingApplet()Z
+					ifeq L2;
+				L1:	return;
+				L2:	aload_1;
+					invokevirtual 7;		// getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_1;
+					baload;
+					sstore_3;
+				L4:	sload_3;
+					stableswitch L9 1 4 L5 L6 L7 L8;
+				L5:	aload_0;
+					aload_1;
+					invokespecial 8;		// Bai_TH4/Bai_TH4.inputScore(Ljavacard/framework/APDU;)V
+					goto L10;
+				L6:	aload_0;
+					aload_1;
+					invokespecial 9;		// Bai_TH4/Bai_TH4.printScores(Ljavacard/framework/APDU;)V
+					goto L10;
+				L7:	aload_0;
+					aload_1;
+					invokespecial 10;		// Bai_TH4/Bai_TH4.updateScore(Ljavacard/framework/APDU;)V
+					goto L10;
+				L8:	aload_0;
+					aload_1;
+					invokespecial 11;		// Bai_TH4/Bai_TH4.deleteScore(Ljavacard/framework/APDU;)V
+					goto L10;
+				L9:	sspush 27904;
+					invokestatic 12;		// javacard/framework/ISOException.throwIt(S)V
+				L10:	return;
+		}
+
+		.method private inputScore(Ljavacard/framework/APDU;)V {
+			.stack 3;
+			.locals 4;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 7;		// getBuffer()[B
+					astore_2;
+				L1:	aload_2;
+					sconst_5;
+					baload;
+					sstore_3;
+				L2:	aload_2;
+					bspush 6;
+					baload;
+					sstore 4;
+				L3:	getfield_b_this 1;		// byte Bai_TH4/Bai_TH4.currentSubjectCount
+					bspush 9;
+					if_scmplt L5;
+				L4:	sspush 27268;
+					invokestatic 12;		// javacard/framework/ISOException.throwIt(S)V
+				L5:	sconst_0;
+					sstore 5;
+				L6:	sload 5;
+					getfield_b_this 1;		// byte Bai_TH4/Bai_TH4.currentSubjectCount
+					sconst_2;
+					smul;
+					if_scmpge L10;
+				L7:	getfield_a_this 0;		// reference Bai_TH4/Bai_TH4.diemThi
+					sload 5;
+					baload;
+					sload_3;
+					if_scmpne L9;
+				L8:	sspush 27012;
+					invokestatic 12;		// javacard/framework/ISOException.throwIt(S)V
+				L9:	sinc 5 2;
+					goto L6;
+				L10:	getfield_b_this 1;		// byte Bai_TH4/Bai_TH4.currentSubjectCount
+					sconst_2;
+					smul;
+					sstore 5;
+				L11:	getfield_a_this 0;		// reference Bai_TH4/Bai_TH4.diemThi
+					sload 5;
+					sload_3;
+					bastore;
+					getfield_a_this 0;		// reference Bai_TH4/Bai_TH4.diemThi
+					sload 5;
+					sconst_1;
+					sadd;
+					sload 4;
+					bastore;
+					aload_0;
+					dup;
+					getfield_b 1;		// byte Bai_TH4/Bai_TH4.currentSubjectCount
+					sconst_1;
+					sadd;
+					s2b;
+					putfield_b 1;		// byte Bai_TH4/Bai_TH4.currentSubjectCount
+					aload_0;
+					aload_1;
+					invokespecial 9;		// Bai_TH4/Bai_TH4.printScores(Ljavacard/framework/APDU;)V
+					return;
+		}
+
+		.method private printScores(Ljavacard/framework/APDU;)V {
+			.stack 5;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 7;		// getBuffer()[B
+					astore_2;
+				L1:	getfield_b_this 1;		// byte Bai_TH4/Bai_TH4.currentSubjectCount
+					sconst_2;
+					smul;
+					sstore_3;
+				L2:	getfield_a_this 0;		// reference Bai_TH4/Bai_TH4.diemThi
+					sconst_0;
+					aload_2;
+					sconst_0;
+					sload_3;
+					invokestatic 13;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sload_3;
+					invokevirtual 14;		// setOutgoingAndSend(SS)V
+					return;
+		}
+
+		.method private updateScore(Ljavacard/framework/APDU;)V {
+			.stack 3;
+			.locals 5;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 7;		// getBuffer()[B
+					astore_2;
+				L1:	aload_2;
+					sconst_5;
+					baload;
+					sstore_3;
+				L2:	aload_2;
+					bspush 6;
+					baload;
+					sstore 4;
+				L3:	sconst_0;
+					sstore 5;
+				L4:	sconst_0;
+					sstore 6;
+				L5:	sload 6;
+					getfield_b_this 1;		// byte Bai_TH4/Bai_TH4.currentSubjectCount
+					sconst_2;
+					smul;
+					if_scmpge L9;
+				L6:	getfield_a_this 0;		// reference Bai_TH4/Bai_TH4.diemThi
+					sload 6;
+					baload;
+					sload_3;
+					if_scmpne L8;
+				L7:	getfield_a_this 0;		// reference Bai_TH4/Bai_TH4.diemThi
+					sload 6;
+					sconst_1;
+					sadd;
+					sload 4;
+					bastore;
+					sconst_1;
+					sstore 5;
+					goto L9;
+				L8:	sinc 6 2;
+					goto L5;
+				L9:	sload 5;
+					ifne L11;
+				L10:	sspush 27012;
+					invokestatic 12;		// javacard/framework/ISOException.throwIt(S)V
+				L11:	aload_0;
+					aload_1;
+					invokespecial 9;		// Bai_TH4/Bai_TH4.printScores(Ljavacard/framework/APDU;)V
+					return;
+		}
+
+		.method private deleteScore(Ljavacard/framework/APDU;)V {
+			.stack 5;
+			.locals 5;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 7;		// getBuffer()[B
+					astore_2;
+				L1:	aload_2;
+					sconst_5;
+					baload;
+					sstore_3;
+				L2:	sconst_0;
+					sstore 4;
+				L3:	sconst_0;
+					sstore 5;
+				L4:	sload 5;
+					getfield_b_this 1;		// byte Bai_TH4/Bai_TH4.currentSubjectCount
+					sconst_2;
+					smul;
+					if_scmpge L9;
+				L5:	getfield_a_this 0;		// reference Bai_TH4/Bai_TH4.diemThi
+					sload 5;
+					baload;
+					sload_3;
+					if_scmpne L8;
+				L6:	sconst_1;
+					sstore 4;
+					getfield_b_this 1;		// byte Bai_TH4/Bai_TH4.currentSubjectCount
+					sconst_2;
+					smul;
+					sload 5;
+					ssub;
+					sconst_2;
+					ssub;
+					sstore 6;
+				L7:	getfield_a_this 0;		// reference Bai_TH4/Bai_TH4.diemThi
+					sload 5;
+					sconst_2;
+					sadd;
+					getfield_a_this 0;		// reference Bai_TH4/Bai_TH4.diemThi
+					sload 5;
+					sload 6;
+					invokestatic 13;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					pop;
+					aload_0;
+					dup;
+					getfield_b 1;		// byte Bai_TH4/Bai_TH4.currentSubjectCount
+					sconst_1;
+					ssub;
+					s2b;
+					putfield_b 1;		// byte Bai_TH4/Bai_TH4.currentSubjectCount
+					goto L9;
+				L8:	sinc 5 2;
+					goto L4;
+				L9:	sload 4;
+					ifne L11;
+				L10:	sspush 27012;
+					invokestatic 12;		// javacard/framework/ISOException.throwIt(S)V
+				L11:	aload_0;
+					aload_1;
+					invokespecial 9;		// Bai_TH4/Bai_TH4.printScores(Ljavacard/framework/APDU;)V
+					return;
+		}
+
+	}
+
+}

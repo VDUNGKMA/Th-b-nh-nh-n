@@ -1,0 +1,2510 @@
+// converted by version  [v3.0.4]
+// on Wed Dec 18 23:24:52 ICT 2024
+
+.package SCard {
+	.aid 0x0:0x0:0x0:0x0:0x9;
+	.version 1.0;
+
+	.imports {
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x1 1.5;		//javacard/framework
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x2 1.5;		//javacard/security
+		0xA0:0x0:0x0:0x0:0x62:0x2:0x1 1.5;		//javacardx/crypto
+		0xA0:0x0:0x0:0x0:0x62:0x0:0x1 1.0;		//java/lang
+	}
+
+	.applet {
+		0x0:0x0:0x0:0x0:0x9:0x0 SCard;
+	}
+
+	.constantPool {
+		// 0
+		instanceFieldRef 0.9 SCard/pin;
+		// 1
+		instanceFieldRef byte[] SCard/pintoKey;
+		// 2
+		instanceFieldRef byte[] SCard/image1;
+		// 3
+		instanceFieldRef byte[] SCard/image2;
+		// 4
+		instanceFieldRef byte[] SCard/image3;
+		// 5
+		instanceFieldRef byte[] SCard/image4;
+		// 6
+		instanceFieldRef 1.11 SCard/sha;
+		// 7
+		instanceFieldRef 2.1 SCard/aescipher;
+		// 8
+		instanceFieldRef 1.20 SCard/aesKey;
+		// 9
+		instanceFieldRef short SCard/sigLen;
+		// 10
+		instanceFieldRef byte[] SCard/rsaPriKey;
+		// 11
+		instanceFieldRef byte[] SCard/rsaPubKey;
+		// 12
+		instanceFieldRef short SCard/rsaPubKeyLen;
+		// 13
+		instanceFieldRef short SCard/rsaPriKeyLen;
+		// 14
+		instanceFieldRef byte[] SCard/sig_buffer;
+		// 15
+		instanceFieldRef 1.15 SCard/rsaSig;
+		// 16
+		instanceFieldRef byte[] SCard/tempBuffer;
+		// 17
+		instanceFieldRef byte[] SCard/tempBuffer__;
+		// 18
+		instanceFieldRef short SCard/imagelen1;
+		// 19
+		instanceFieldRef short SCard/imagelen2;
+		// 20
+		instanceFieldRef short SCard/imagelen3;
+		// 21
+		instanceFieldRef short SCard/imagelen4;
+		// 22
+		instanceFieldRef short SCard/lenback1;
+		// 23
+		instanceFieldRef short SCard/lenback2;
+		// 24
+		instanceFieldRef short SCard/lenback3;
+		// 25
+		instanceFieldRef short SCard/lenback4;
+		// 26
+		instanceFieldRef short SCard/pointer1;
+		// 27
+		instanceFieldRef short SCard/pointer2;
+		// 28
+		instanceFieldRef short SCard/pointer3;
+		// 29
+		instanceFieldRef short SCard/pointer4;
+		// 30
+		instanceFieldRef 1.14 SCard/ranData;
+		// 31
+		.classRef SCard;
+		// 32
+		staticFieldRef short SCard/checkinlen;
+		// 33
+		staticMethodRef 1.15.0(BZ)Ljavacard/security/Signature;;		// javacard/security/Signature.getInstance(BZ)Ljavacard/security/Signature;
+			.descriptor	Ljavacard/security/Signature;	1.15;
+
+		// 34
+		staticFieldRef short SCard/checkoutlen;
+		// 35
+		staticMethodRef 0.8.13(SB)[B;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+		// 36
+		staticMethodRef 0.3.0()V;		// javacard/framework/Applet.<init>()V
+		// 37
+		.classRef 0.9;		// javacard/framework/OwnerPIN
+		// 38
+		virtualMethodRef 0.3.1()V;		// register()V
+		// 39
+		staticMethodRef 0.8.18()V;		// javacard/framework/JCSystem.requestObjectDeletion()V
+		// 40
+		virtualMethodRef 0.3.3()Z;		// selectingApplet()Z
+		// 41
+		virtualMethodRef 0.10.1()[B;		// getBuffer()[B
+		// 42
+		virtualMethodRef 0.10.6()S;		// setIncomingAndReceive()S
+		// 43
+		staticMethodRef 0.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+		// 44
+		staticMethodRef SCard/init_info(Ljavacard/framework/APDU;S)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 45
+		staticMethodRef SCard/get_info(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 46
+		staticMethodRef 0.9.0(BB)V;		// javacard/framework/OwnerPIN.<init>(BB)V
+		// 47
+		staticMethodRef SCard/<init>()V;
+		// 48
+		staticMethodRef 1.11.0(BZ)Ljavacard/security/MessageDigest;;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
+			.descriptor	Ljavacard/security/MessageDigest;	1.11;
+
+		// 49
+		staticFieldRef byte[] SCard/pintemp;
+		// 50
+		staticMethodRef SCard/set_img(Ljavacard/framework/APDU;S)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 51
+		staticMethodRef 2.1.0(BZ)Ljavacardx/crypto/Cipher;;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
+			.descriptor	Ljavacardx/crypto/Cipher;	2.1;
+
+		// 52
+		staticFieldRef byte[] SCard/sothe;
+		// 53
+		staticMethodRef 1.13.0(BSZ)Ljavacard/security/Key;;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+			.descriptor	Ljavacard/security/Key;	1.0;
+
+		// 54
+		.classRef 1.20;		// javacard/security/AESKey
+		// 55
+		staticFieldRef byte[] SCard/hoten;
+		// 56
+		staticFieldRef byte[] SCard/ngaysinh;
+		// 57
+		staticFieldRef byte[] SCard/chucvu;
+		// 58
+		staticFieldRef byte[] SCard/checkin;
+		// 59
+		staticMethodRef SCard/get_img(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 60
+		staticMethodRef SCard/update_info(Ljavacard/framework/APDU;S)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 61
+		staticMethodRef SCard/update_pin(Ljavacard/framework/APDU;S)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 62
+		staticMethodRef SCard/setCheckIn(Ljavacard/framework/APDU;S)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 63
+		staticMethodRef SCard/setCheckOut(Ljavacard/framework/APDU;S)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 64
+		staticMethodRef SCard/clear_card(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 65
+		staticMethodRef SCard/check_pin(Ljavacard/framework/APDU;S)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 66
+		staticMethodRef SCard/unblock_card(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 67
+		staticMethodRef SCard/getPublicKey(Ljavacard/framework/APDU;S)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 68
+		staticMethodRef SCard/getTimeCheckIn(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 69
+		staticMethodRef SCard/getTimeCheckOut(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 70
+		staticMethodRef SCard/option_sign(Ljavacard/framework/APDU;S)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 71
+		staticMethodRef 0.16.1([BS[BSS)S;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+		// 72
+		staticFieldRef short SCard/sothelen;
+		// 73
+		staticFieldRef short SCard/hotenlen;
+		// 74
+		staticFieldRef short SCard/ngaysinhlen;
+		// 75
+		staticFieldRef short SCard/chucvulen;
+		// 76
+		staticFieldRef short SCard/pinlen;
+		// 77
+		staticMethodRef SCard/genKeypair(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 78
+		staticMethodRef SCard/setAesKey(Ljavacard/framework/APDU;[BS)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 79
+		virtualMethodRef 0.9.8([BSB)V;		// update([BSB)V
+		// 80
+		staticMethodRef SCard/encrypt_AesCipher(Ljavacard/framework/APDU;[BS[B)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 81
+		staticMethodRef SCard/decrypt_AesCipher(Ljavacard/framework/APDU;[BS[BS)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 82
+		staticMethodRef 0.16.3([BSSB)S;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+		// 83
+		virtualMethodRef 0.10.8(SS)V;		// setOutgoingAndSend(SS)V
+		// 84
+		staticFieldRef short SCard/sodu;
+		// 85
+		virtualMethodRef 0.10.16()S;		// getOffsetCdata()S
+		// 86
+		virtualMethodRef 0.10.7()S;		// setOutgoing()S
+		// 87
+		virtualMethodRef 0.10.9(S)V;		// setOutgoingLength(S)V
+		// 88
+		virtualMethodRef 0.10.4(SS)V;		// sendBytes(SS)V
+		// 89
+		virtualMethodRef 0.9.2()B;		// getTriesRemaining()B
+		// 90
+		virtualMethodRef 0.9.1([BSB)Z;		// check([BSB)Z
+		// 91
+		staticFieldRef byte[] SCard/status;
+		// 92
+		virtualMethodRef 0.10.5([BSS)V;		// sendBytesLong([BSS)V
+		// 93
+		virtualMethodRef 0.9.6()V;		// resetAndUnblock()V
+		// 94
+		virtualMethodRef 1.11.1([BSS[BS)S;		// doFinal([BSS[BS)S
+		// 95
+		staticMethodRef 0.8.1()V;		// javacard/framework/JCSystem.beginTransaction()V
+		// 96
+		staticMethodRef 0.8.2()V;		// javacard/framework/JCSystem.commitTransaction()V
+		// 97
+		.classRef 1.12;		// javacard/security/CryptoException
+		// 98
+		virtualMethodRef 2.1.3(Ljavacard/security/Key;B)V;		// init(Ljavacard/security/Key;B)V
+			.descriptor	Ljavacard/security/Key;	1.0;
+
+		// 99
+		virtualMethodRef 2.1.1([BSS[BS)S;		// doFinal([BSS[BS)S
+		// 100
+		virtualMethodRef 2.1.5([BSS[BS)S;		// update([BSS[BS)S
+		// 101
+		staticFieldRef short SCard/count;
+		// 102
+		virtualMethodRef 1.12.1()S;		// getReason()S
+		// 103
+		.classRef 1.16;		// javacard/security/KeyPair
+		// 104
+		staticMethodRef 1.16.0(BS)V;		// javacard/security/KeyPair.<init>(BS)V
+		// 105
+		virtualMethodRef 1.16.1()V;		// genKeyPair()V
+		// 106
+		virtualMethodRef 1.16.3()Ljavacard/security/PublicKey;;		// getPublic()Ljavacard/security/PublicKey;
+			.descriptor	Ljavacard/security/PublicKey;	1.3;
+
+		// 107
+		.classRef 1.9;		// javacard/security/RSAPublicKey
+		// 108
+		virtualMethodRef 1.16.2()Ljavacard/security/PrivateKey;;		// getPrivate()Ljavacard/security/PrivateKey;
+			.descriptor	Ljavacard/security/PrivateKey;	1.2;
+
+		// 109
+		.classRef 1.8;		// javacard/security/RSAPrivateKey
+		// 110
+		staticMethodRef 1.14.0(B)Ljavacard/security/RandomData;;		// javacard/security/RandomData.getInstance(B)Ljavacard/security/RandomData;
+			.descriptor	Ljavacard/security/RandomData;	1.14;
+
+		// 111
+		staticFieldRef byte[] SCard/checkout;
+		// 112
+		virtualMethodRef 1.14.2([BSS)V;		// setSeed([BSS)V
+		// 113
+		virtualMethodRef 1.14.1([BSS)V;		// generateData([BSS)V
+		// 114
+		virtualMethodRef 1.15.3(Ljavacard/security/Key;B)V;		// init(Ljavacard/security/Key;B)V
+			.descriptor	Ljavacard/security/Key;	1.0;
+
+		// 115
+		virtualMethodRef 1.15.5([BSS[BS)S;		// sign([BSS[BS)S
+		// 116
+		staticMethodRef SCard/createRamData(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 117
+		staticMethodRef SCard/createSig(Ljavacard/framework/APDU;S)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+	}
+
+	.class public SCard 0 extends 0.3 {		// extends javacard/framework/Applet
+
+		.fields {
+			private 0.9 pin 0;		// Ljavacard/framework/OwnerPIN;
+			private byte[] image1 1;		// [B
+			private byte[] image2 2;		// [B
+			private byte[] image3 3;		// [B
+			private byte[] image4 4;		// [B
+			private 1.11 sha 5;		// Ljavacard/security/MessageDigest;
+			private 2.1 aescipher 6;		// Ljavacardx/crypto/Cipher;
+			private 1.20 aesKey 7;		// Ljavacard/security/AESKey;
+			private final byte[] tempBuffer 8;		// [B
+			private final byte[] pintoKey 9;		// [B
+			private final byte[] sig_buffer 10;		// [B
+			private final byte[] rsaPriKey 11;		// [B
+			private final byte[] rsaPubKey 12;		// [B
+			private final byte[] tempBuffer__ 13;		// [B
+			private 1.15 rsaSig 14;		// Ljavacard/security/Signature;
+			private 1.14 ranData 15;		// Ljavacard/security/RandomData;
+			private short imagelen1 16;		// S
+			private short imagelen2 17;		// S
+			private short imagelen3 18;		// S
+			private short imagelen4 19;		// S
+			private short lenback1 20;		// S
+			private short lenback2 21;		// S
+			private short lenback3 22;		// S
+			private short lenback4 23;		// S
+			private short pointer1 24;		// S
+			private short pointer2 25;		// S
+			private short pointer3 26;		// S
+			private short pointer4 27;		// S
+			private short sigLen 28;		// S
+			private short rsaPriKeyLen 29;		// S
+			private short rsaPubKeyLen 30;		// S
+			public static final short MAX_LENGTH = 32767;		// S
+			private static byte[] pintemp;		// [B
+			private static byte[] sothe;		// [B
+			private static byte[] hoten;		// [B
+			private static byte[] ngaysinh;		// [B
+			private static byte[] chucvu;		// [B
+			private static byte[] checkin;		// [B
+			private static byte[] checkout;		// [B
+			private static short sodu;		// S
+			private static short pinlen;		// S
+			private static short sothelen;		// S
+			private static short hotenlen;		// S
+			private static short ngaysinhlen;		// S
+			private static short chucvulen;		// S
+			private static short checkinlen;		// S
+			private static short checkoutlen;		// S
+			private static short count;		// S
+			private static final byte CLA = -96;		// B
+			private static final byte INS_INIT_INFO = 16;		// B
+			private static final byte INS_GETINFO = 17;		// B
+			private static final byte INS_SETIMG = 18;		// B
+			private static final byte INS_GETIMG = 19;		// B
+			private static final byte INS_UPDATE_INFO = 20;		// B
+			private static final byte INS_UPDATE_PIN = 21;		// B
+			private static final byte INS_CHECKIN = 22;		// B
+			private static final byte INS_CHECKOUT = 23;		// B
+			private static final byte INS_CLEARCARD = 24;		// B
+			private static final byte INS_CHECKPIN = 25;		// B
+			private static final byte INS_UNBLOCK = 32;		// B
+			private static final byte INS_GETPUBKEY = 34;		// B
+			private static final byte INS_GETTIMECHECKIN = 35;		// B
+			private static final byte INS_GETTIMECHECKOUT = 36;		// B
+			private static final byte INS_OPTION_VERIFY = 37;		// B
+			private static final byte PIN_trylimit = 3;		// B
+			private static final byte PIN_maxsize = 68;		// B
+			private static final byte[] status = {0,1,2,3,4};		// [B
+		}
+
+		.publicMethodTable 7 {
+			equals(Ljava/lang/Object;)Z;
+			register()V;
+			register([BSB)V;
+			selectingApplet()Z;
+			deselect()V;
+			getShareableInterfaceObject(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable;;
+			select()Z;
+			process(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public static install([BSB)V 0 {
+			.stack 2;
+			.locals 0;
+
+				L0:	new 31;		// SCard/SCard
+					dup;
+					invokespecial 47;		// SCard/SCard.<init>()V
+					pop;
+					return;
+		}
+
+		.method public <init>()V 1 {
+			.stack 5;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 36;		// javacard/framework/Applet.<init>()V
+					aload_0;
+					new 37;		// javacard/framework/OwnerPIN
+					dup;
+					sconst_3;
+					bspush 68;
+					invokespecial 46;		// javacard/framework/OwnerPIN.<init>(BB)V
+					putfield_a 0;		// reference SCard/SCard.pin
+					bspush 44;
+					newarray 11;
+					putstatic_a 49;		// reference SCard/SCard.pintemp
+					bspush 32;
+					newarray 11;
+					putstatic_a 52;		// reference SCard/SCard.sothe
+					bspush 64;
+					newarray 11;
+					putstatic_a 55;		// reference SCard/SCard.hoten
+					bspush 16;
+					newarray 11;
+					putstatic_a 56;		// reference SCard/SCard.ngaysinh
+					bspush 64;
+					newarray 11;
+					putstatic_a 57;		// reference SCard/SCard.chucvu
+					bspush 48;
+					newarray 11;
+					putstatic_a 58;		// reference SCard/SCard.checkin
+					bspush 48;
+					newarray 11;
+					putstatic_a 111;		// reference SCard/SCard.checkout
+					aload_0;
+					bspush 16;
+					newarray 11;
+					putfield_a 1;		// reference SCard/SCard.pintoKey
+					sconst_0;
+					putstatic_s 32;		// short SCard/SCard.checkinlen
+					sconst_0;
+					putstatic_s 34;		// short SCard/SCard.checkoutlen
+					aload_0;
+					sspush 32767;
+					newarray 11;
+					putfield_a 2;		// reference SCard/SCard.image1
+					aload_0;
+					sspush 32767;
+					newarray 11;
+					putfield_a 3;		// reference SCard/SCard.image2
+					aload_0;
+					sspush 32767;
+					newarray 11;
+					putfield_a 4;		// reference SCard/SCard.image3
+					aload_0;
+					sspush 32767;
+					newarray 11;
+					putfield_a 5;		// reference SCard/SCard.image4
+					aload_0;
+					sconst_2;
+					sconst_0;
+					invokestatic 48;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
+					putfield_a 6;		// reference SCard/SCard.sha
+					aload_0;
+					bspush 14;
+					sconst_0;
+					invokestatic 51;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
+					putfield_a 7;		// reference SCard/SCard.aescipher
+					aload_0;
+					bspush 15;
+					sspush 128;
+					sconst_0;
+					invokestatic 53;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+					checkcast 0 54;		// T_CLASSORINTERFACE javacard/security/AESKey
+					putfield_a 8;		// reference SCard/SCard.aesKey
+					aload_0;
+					sspush 128;
+					putfield_s 9;		// short SCard/SCard.sigLen
+					aload_0;
+					getfield_s_this 9;		// short SCard/SCard.sigLen
+					sconst_2;
+					smul;
+					newarray 11;
+					putfield_a 10;		// reference SCard/SCard.rsaPriKey
+					aload_0;
+					getfield_s_this 9;		// short SCard/SCard.sigLen
+					sconst_2;
+					smul;
+					newarray 11;
+					putfield_a 11;		// reference SCard/SCard.rsaPubKey
+					aload_0;
+					sconst_0;
+					putfield_s 12;		// short SCard/SCard.rsaPubKeyLen
+					aload_0;
+					sconst_0;
+					putfield_s 13;		// short SCard/SCard.rsaPriKeyLen
+					aload_0;
+					getfield_s_this 9;		// short SCard/SCard.sigLen
+					newarray 11;
+					putfield_a 14;		// reference SCard/SCard.sig_buffer
+					aload_0;
+					bspush 10;
+					sconst_0;
+					invokestatic 33;		// javacard/security/Signature.getInstance(BZ)Ljavacard/security/Signature;
+					putfield_a 15;		// reference SCard/SCard.rsaSig
+					aload_0;
+					sspush 256;
+					sconst_2;
+					invokestatic 35;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+					putfield_a 16;		// reference SCard/SCard.tempBuffer
+					aload_0;
+					sspush 256;
+					sconst_2;
+					invokestatic 35;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+					putfield_a 17;		// reference SCard/SCard.tempBuffer__
+					aload_0;
+					invokevirtual 38;		// register()V
+					invokestatic 39;		// javacard/framework/JCSystem.requestObjectDeletion()V
+					return;
+		}
+
+		.method public process(Ljavacard/framework/APDU;)V 7 {
+			.stack 3;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_0;
+					invokevirtual 40;		// selectingApplet()Z
+					ifeq L2;
+				L1:	return;
+				L2:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore_2;
+				L3:	aload_1;
+					invokevirtual 42;		// setIncomingAndReceive()S
+					sstore_3;
+				L4:	aload_2;
+					sconst_0;
+					baload;
+					bspush -96;
+					if_scmpeq L6;
+				L5:	sspush 28160;
+					invokestatic 43;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	aload_2;
+					sconst_1;
+					baload;
+					stableswitch L33 16 37 L7 L8 L9 L13 L22 L23 L24 L25 L26 L27 L33 L33 L33 L33 L33 L33 L28 L33 L29 L30 L31 L32;
+				L7:	aload_0;
+					aload_1;
+					sload_3;
+					invokespecial 44;		// SCard/SCard.init_info(Ljavacard/framework/APDU;S)V
+					goto_w L34;
+				L8:	aload_0;
+					aload_1;
+					invokespecial 45;		// SCard/SCard.get_info(Ljavacard/framework/APDU;)V
+					goto_w L34;
+				L9:	aload_2;
+					sconst_2;
+					baload;
+					sconst_1;
+					if_scmpne L11;
+				L10:	aload_0;
+					sconst_0;
+					putfield_s 18;		// short SCard/SCard.imagelen1
+					aload_0;
+					sconst_0;
+					putfield_s 19;		// short SCard/SCard.imagelen2
+					aload_0;
+					sconst_0;
+					putfield_s 20;		// short SCard/SCard.imagelen3
+					aload_0;
+					sconst_0;
+					putfield_s 21;		// short SCard/SCard.imagelen4
+				L11:	aload_2;
+					sconst_2;
+					baload;
+					sconst_2;
+					if_scmpne_w L34;
+				L12:	aload_0;
+					aload_1;
+					sload_3;
+					invokespecial 50;		// SCard/SCard.set_img(Ljavacard/framework/APDU;S)V
+					goto_w L34;
+				L13:	aload_2;
+					sconst_2;
+					baload;
+					sconst_1;
+					if_scmpne L20;
+				L14:	aload_0;
+					getfield_s_this 18;		// short SCard/SCard.imagelen1
+					putfield_s 22;		// short SCard/SCard.lenback1
+					aload_0;
+					getfield_s_this 19;		// short SCard/SCard.imagelen2
+					putfield_s 23;		// short SCard/SCard.lenback2
+					aload_0;
+					getfield_s_this 20;		// short SCard/SCard.imagelen3
+					putfield_s 24;		// short SCard/SCard.lenback3
+					aload_0;
+					getfield_s_this 21;		// short SCard/SCard.imagelen4
+					putfield_s 25;		// short SCard/SCard.lenback4
+					aload_0;
+					sconst_0;
+					putfield_s 26;		// short SCard/SCard.pointer1
+					aload_0;
+					sconst_0;
+					putfield_s 27;		// short SCard/SCard.pointer2
+					aload_0;
+					sconst_0;
+					putfield_s 28;		// short SCard/SCard.pointer3
+					aload_0;
+					sconst_0;
+					putfield_s 29;		// short SCard/SCard.pointer4
+					getfield_s_this 19;		// short SCard/SCard.imagelen2
+					ifne L16;
+				L15:	aload_0;
+					sconst_1;
+					putfield_s 23;		// short SCard/SCard.lenback2
+				L16:	getfield_s_this 20;		// short SCard/SCard.imagelen3
+					ifne L18;
+				L17:	aload_0;
+					sconst_1;
+					putfield_s 24;		// short SCard/SCard.lenback3
+				L18:	getfield_s_this 21;		// short SCard/SCard.imagelen4
+					ifne L20;
+				L19:	aload_0;
+					sconst_1;
+					putfield_s 25;		// short SCard/SCard.lenback4
+				L20:	aload_2;
+					sconst_2;
+					baload;
+					sconst_2;
+					if_scmpne L34;
+				L21:	aload_0;
+					aload_1;
+					invokespecial 59;		// SCard/SCard.get_img(Ljavacard/framework/APDU;)V
+					goto L34;
+				L22:	aload_0;
+					aload_1;
+					sload_3;
+					invokespecial 60;		// SCard/SCard.update_info(Ljavacard/framework/APDU;S)V
+					goto L34;
+				L23:	aload_0;
+					aload_1;
+					sload_3;
+					invokespecial 61;		// SCard/SCard.update_pin(Ljavacard/framework/APDU;S)V
+					goto L34;
+				L24:	aload_0;
+					aload_1;
+					sload_3;
+					invokespecial 62;		// SCard/SCard.setCheckIn(Ljavacard/framework/APDU;S)V
+					goto L34;
+				L25:	aload_0;
+					aload_1;
+					sload_3;
+					invokespecial 63;		// SCard/SCard.setCheckOut(Ljavacard/framework/APDU;S)V
+					goto L34;
+				L26:	aload_0;
+					aload_1;
+					invokespecial 64;		// SCard/SCard.clear_card(Ljavacard/framework/APDU;)V
+					goto L34;
+				L27:	aload_0;
+					aload_1;
+					sload_3;
+					invokespecial 65;		// SCard/SCard.check_pin(Ljavacard/framework/APDU;S)V
+					goto L34;
+				L28:	aload_0;
+					aload_1;
+					invokespecial 66;		// SCard/SCard.unblock_card(Ljavacard/framework/APDU;)V
+					goto L34;
+				L29:	aload_0;
+					aload_1;
+					sload_3;
+					invokespecial 67;		// SCard/SCard.getPublicKey(Ljavacard/framework/APDU;S)V
+					goto L34;
+				L30:	aload_0;
+					aload_1;
+					invokespecial 68;		// SCard/SCard.getTimeCheckIn(Ljavacard/framework/APDU;)V
+					goto L34;
+				L31:	aload_0;
+					aload_1;
+					invokespecial 69;		// SCard/SCard.getTimeCheckOut(Ljavacard/framework/APDU;)V
+					goto L34;
+				L32:	aload_0;
+					aload_1;
+					sload_3;
+					invokespecial 70;		// SCard/SCard.option_sign(Ljavacard/framework/APDU;S)V
+					goto L34;
+				L33:	sspush 27904;
+					invokestatic 43;		// javacard/framework/ISOException.throwIt(S)V
+				L34:	return;
+		}
+
+		.method private init_info(Ljavacard/framework/APDU;S)V {
+			.stack 7;
+			.locals 6;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	sconst_0;
+					dup;
+					sstore 6;
+				L1:	dup;
+					sstore 5;
+				L2:	dup;
+					sstore 4;
+				L3:	sstore_3;
+				L4:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore 7;
+				L5:	aload 7;
+					sconst_5;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					sload_2;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					sconst_0;
+					sstore 8;
+				L6:	sload 8;
+					sload_2;
+					if_scmpge L17;
+				L7:	getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sload 8;
+					baload;
+					bspush 46;
+					if_scmpne L16;
+				L8:	sload_3;
+					ifne L10;
+				L9:	sload 8;
+					sstore_3;
+					sload_3;
+					putstatic_s 72;		// short SCard/SCard.sothelen
+					goto L16;
+				L10:	sload 4;
+					ifne L12;
+				L11:	sload 8;
+					sstore 4;
+					sload 4;
+					sload_3;
+					ssub;
+					sconst_1;
+					ssub;
+					putstatic_s 73;		// short SCard/SCard.hotenlen
+					goto L16;
+				L12:	sload 5;
+					ifne L14;
+				L13:	sload 8;
+					sstore 5;
+					sload 5;
+					sload 4;
+					ssub;
+					sconst_1;
+					ssub;
+					putstatic_s 74;		// short SCard/SCard.ngaysinhlen
+					goto L16;
+				L14:	sload 6;
+					ifne L16;
+				L15:	sload 8;
+					sstore 6;
+					sload 6;
+					sload 5;
+					ssub;
+					sconst_1;
+					ssub;
+					putstatic_s 75;		// short SCard/SCard.chucvulen
+					bspush 18;
+					putstatic_s 76;		// short SCard/SCard.pinlen
+				L16:	sinc 8 1;
+					goto L6;
+				L17:	getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					getstatic_a 52;		// reference SCard/SCard.sothe
+					sconst_0;
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sload_3;
+					sconst_1;
+					sadd;
+					getstatic_a 55;		// reference SCard/SCard.hoten
+					sconst_0;
+					getstatic_s 73;		// short SCard/SCard.hotenlen
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sload 4;
+					sconst_1;
+					sadd;
+					getstatic_a 56;		// reference SCard/SCard.ngaysinh
+					sconst_0;
+					getstatic_s 74;		// short SCard/SCard.ngaysinhlen
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sload 5;
+					sconst_1;
+					sadd;
+					getstatic_a 57;		// reference SCard/SCard.chucvu
+					sconst_0;
+					getstatic_s 75;		// short SCard/SCard.chucvulen
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sload 6;
+					sconst_1;
+					sadd;
+					getstatic_a 49;		// reference SCard/SCard.pintemp
+					sconst_0;
+					getstatic_s 76;		// short SCard/SCard.pinlen
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					aload_1;
+					invokespecial 77;		// SCard/SCard.genKeypair(Ljavacard/framework/APDU;)V
+					aload_0;
+					aload_1;
+					getstatic_a 49;		// reference SCard/SCard.pintemp
+					getstatic_s 76;		// short SCard/SCard.pinlen
+					invokespecial 78;		// SCard/SCard.setAesKey(Ljavacard/framework/APDU;[BS)V
+					getfield_a_this 0;		// reference SCard/SCard.pin
+					getstatic_a 49;		// reference SCard/SCard.pintemp
+					sconst_0;
+					getstatic_s 76;		// short SCard/SCard.pinlen
+					s2b;
+					invokevirtual 79;		// update([BSB)V
+					aload_0;
+					aload_1;
+					getfield_a_this 10;		// reference SCard/SCard.rsaPriKey
+					getfield_s_this 13;		// short SCard/SCard.rsaPriKeyLen
+					getfield_a_this 10;		// reference SCard/SCard.rsaPriKey
+					invokespecial 80;		// SCard/SCard.encrypt_AesCipher(Ljavacard/framework/APDU;[BS[B)V
+					aload_0;
+					aload_1;
+					getstatic_a 52;		// reference SCard/SCard.sothe
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					getstatic_a 52;		// reference SCard/SCard.sothe
+					invokespecial 80;		// SCard/SCard.encrypt_AesCipher(Ljavacard/framework/APDU;[BS[B)V
+					aload_0;
+					aload_1;
+					getstatic_a 55;		// reference SCard/SCard.hoten
+					getstatic_s 73;		// short SCard/SCard.hotenlen
+					getstatic_a 55;		// reference SCard/SCard.hoten
+					invokespecial 80;		// SCard/SCard.encrypt_AesCipher(Ljavacard/framework/APDU;[BS[B)V
+					aload_0;
+					aload_1;
+					getstatic_a 56;		// reference SCard/SCard.ngaysinh
+					getstatic_s 74;		// short SCard/SCard.ngaysinhlen
+					getstatic_a 56;		// reference SCard/SCard.ngaysinh
+					invokespecial 80;		// SCard/SCard.encrypt_AesCipher(Ljavacard/framework/APDU;[BS[B)V
+					aload_0;
+					aload_1;
+					getstatic_a 57;		// reference SCard/SCard.chucvu
+					getstatic_s 75;		// short SCard/SCard.chucvulen
+					getstatic_a 57;		// reference SCard/SCard.chucvu
+					invokespecial 80;		// SCard/SCard.encrypt_AesCipher(Ljavacard/framework/APDU;[BS[B)V
+					aload_0;
+					aload_1;
+					getstatic_a 52;		// reference SCard/SCard.sothe
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					invokespecial 81;		// SCard/SCard.decrypt_AesCipher(Ljavacard/framework/APDU;[BS[BS)V
+					aload_0;
+					aload_1;
+					getstatic_a 55;		// reference SCard/SCard.hoten
+					getstatic_s 73;		// short SCard/SCard.hotenlen
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					sconst_1;
+					sadd;
+					invokespecial 81;		// SCard/SCard.decrypt_AesCipher(Ljavacard/framework/APDU;[BS[BS)V
+					aload_0;
+					aload_1;
+					getstatic_a 56;		// reference SCard/SCard.ngaysinh
+					getstatic_s 74;		// short SCard/SCard.ngaysinhlen
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					getstatic_s 73;		// short SCard/SCard.hotenlen
+					sadd;
+					sconst_2;
+					sadd;
+					invokespecial 81;		// SCard/SCard.decrypt_AesCipher(Ljavacard/framework/APDU;[BS[BS)V
+					aload_0;
+					aload_1;
+					getstatic_a 57;		// reference SCard/SCard.chucvu
+					getstatic_s 75;		// short SCard/SCard.chucvulen
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					getstatic_s 73;		// short SCard/SCard.hotenlen
+					sadd;
+					getstatic_s 74;		// short SCard/SCard.ngaysinhlen
+					sadd;
+					sconst_3;
+					sadd;
+					invokespecial 81;		// SCard/SCard.decrypt_AesCipher(Ljavacard/framework/APDU;[BS[BS)V
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					sconst_1;
+					bspush 58;
+					invokestatic 82;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					getstatic_s 73;		// short SCard/SCard.hotenlen
+					sadd;
+					sconst_1;
+					sadd;
+					sconst_1;
+					bspush 58;
+					invokestatic 82;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					getstatic_s 73;		// short SCard/SCard.hotenlen
+					sadd;
+					getstatic_s 74;		// short SCard/SCard.ngaysinhlen
+					sadd;
+					sconst_2;
+					sadd;
+					sconst_1;
+					bspush 58;
+					invokestatic 82;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					getstatic_s 73;		// short SCard/SCard.hotenlen
+					sadd;
+					getstatic_s 74;		// short SCard/SCard.ngaysinhlen
+					sadd;
+					getstatic_s 75;		// short SCard/SCard.chucvulen
+					sadd;
+					sconst_3;
+					sadd;
+					sconst_1;
+					bspush 58;
+					invokestatic 82;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					getstatic_s 73;		// short SCard/SCard.hotenlen
+					sadd;
+					getstatic_s 74;		// short SCard/SCard.ngaysinhlen
+					sadd;
+					getstatic_s 75;		// short SCard/SCard.chucvulen
+					sadd;
+					sconst_3;
+					sadd;
+					sstore 8;
+				L18:	getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					aload 7;
+					sconst_0;
+					sload 8;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sload 8;
+					invokevirtual 83;		// setOutgoingAndSend(SS)V
+					return;
+		}
+
+		.method private get_info(Ljavacard/framework/APDU;)V {
+			.stack 7;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore_2;
+				L1:	getstatic_s 72;		// short SCard/SCard.sothelen
+					getstatic_s 73;		// short SCard/SCard.hotenlen
+					sadd;
+					getstatic_s 74;		// short SCard/SCard.ngaysinhlen
+					sadd;
+					getstatic_s 75;		// short SCard/SCard.chucvulen
+					sadd;
+					sconst_3;
+					sadd;
+					sstore_3;
+				L2:	aload_0;
+					aload_1;
+					getstatic_a 52;		// reference SCard/SCard.sothe
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					invokespecial 81;		// SCard/SCard.decrypt_AesCipher(Ljavacard/framework/APDU;[BS[BS)V
+					aload_0;
+					aload_1;
+					getstatic_a 55;		// reference SCard/SCard.hoten
+					getstatic_s 73;		// short SCard/SCard.hotenlen
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					sconst_1;
+					sadd;
+					invokespecial 81;		// SCard/SCard.decrypt_AesCipher(Ljavacard/framework/APDU;[BS[BS)V
+					aload_0;
+					aload_1;
+					getstatic_a 56;		// reference SCard/SCard.ngaysinh
+					getstatic_s 74;		// short SCard/SCard.ngaysinhlen
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					getstatic_s 73;		// short SCard/SCard.hotenlen
+					sadd;
+					sconst_2;
+					sadd;
+					invokespecial 81;		// SCard/SCard.decrypt_AesCipher(Ljavacard/framework/APDU;[BS[BS)V
+					aload_0;
+					aload_1;
+					getstatic_a 57;		// reference SCard/SCard.chucvu
+					getstatic_s 75;		// short SCard/SCard.chucvulen
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					getstatic_s 73;		// short SCard/SCard.hotenlen
+					sadd;
+					getstatic_s 74;		// short SCard/SCard.ngaysinhlen
+					sadd;
+					sconst_3;
+					sadd;
+					invokespecial 81;		// SCard/SCard.decrypt_AesCipher(Ljavacard/framework/APDU;[BS[BS)V
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					sconst_1;
+					bspush 58;
+					invokestatic 82;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					getstatic_s 73;		// short SCard/SCard.hotenlen
+					sadd;
+					sconst_1;
+					sadd;
+					sconst_1;
+					bspush 58;
+					invokestatic 82;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					getstatic_s 73;		// short SCard/SCard.hotenlen
+					sadd;
+					getstatic_s 74;		// short SCard/SCard.ngaysinhlen
+					sadd;
+					sconst_2;
+					sadd;
+					sconst_1;
+					bspush 58;
+					invokestatic 82;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					getstatic_s 73;		// short SCard/SCard.hotenlen
+					sadd;
+					getstatic_s 74;		// short SCard/SCard.ngaysinhlen
+					sadd;
+					getstatic_s 75;		// short SCard/SCard.chucvulen
+					sadd;
+					sconst_3;
+					sadd;
+					sconst_1;
+					bspush 58;
+					invokestatic 82;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					aload_2;
+					sconst_0;
+					sload_3;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sload_3;
+					invokevirtual 83;		// setOutgoingAndSend(SS)V
+					return;
+		}
+
+		.method private clear_card(Ljavacard/framework/APDU;)V {
+			.stack 4;
+			.locals 0;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	sconst_0;
+					putstatic_s 84;		// short SCard/SCard.sodu
+					sconst_0;
+					putstatic_s 76;		// short SCard/SCard.pinlen
+					sconst_0;
+					putstatic_s 72;		// short SCard/SCard.sothelen
+					sconst_0;
+					putstatic_s 73;		// short SCard/SCard.hotenlen
+					sconst_0;
+					putstatic_s 74;		// short SCard/SCard.ngaysinhlen
+					sconst_0;
+					putstatic_s 75;		// short SCard/SCard.chucvulen
+					sconst_0;
+					putstatic_s 32;		// short SCard/SCard.checkinlen
+					sconst_0;
+					putstatic_s 34;		// short SCard/SCard.checkoutlen
+					getstatic_a 52;		// reference SCard/SCard.sothe
+					sconst_0;
+					bspush 32;
+					sconst_0;
+					invokestatic 82;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getstatic_a 55;		// reference SCard/SCard.hoten
+					sconst_0;
+					bspush 64;
+					sconst_0;
+					invokestatic 82;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getstatic_a 56;		// reference SCard/SCard.ngaysinh
+					sconst_0;
+					bspush 16;
+					sconst_0;
+					invokestatic 82;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getstatic_a 57;		// reference SCard/SCard.chucvu
+					sconst_0;
+					bspush 64;
+					sconst_0;
+					invokestatic 82;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getstatic_a 49;		// reference SCard/SCard.pintemp
+					sconst_0;
+					bspush 32;
+					sconst_0;
+					invokestatic 82;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getfield_a_this 1;		// reference SCard/SCard.pintoKey
+					sconst_0;
+					bspush 16;
+					sconst_0;
+					invokestatic 82;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getfield_a_this 10;		// reference SCard/SCard.rsaPriKey
+					sconst_0;
+					sspush 256;
+					sconst_0;
+					invokestatic 82;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getfield_a_this 11;		// reference SCard/SCard.rsaPubKey
+					sconst_0;
+					sspush 256;
+					sconst_0;
+					invokestatic 82;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getfield_a_this 14;		// reference SCard/SCard.sig_buffer
+					sconst_0;
+					sspush 128;
+					sconst_0;
+					invokestatic 82;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					return;
+		}
+
+		.method private set_img(Ljavacard/framework/APDU;S)V {
+			.stack 5;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore_3;
+				L1:	aload_1;
+					invokevirtual 85;		// getOffsetCdata()S
+					sstore 4;
+				L2:	sspush 32767;
+					getfield_s_this 20;		// short SCard/SCard.imagelen3
+					ssub;
+					sspush 255;
+					if_scmpge L4;
+				L3:	aload_3;
+					sload 4;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					sload_2;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					aload_1;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sload_2;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					invokespecial 80;		// SCard/SCard.encrypt_AesCipher(Ljavacard/framework/APDU;[BS[B)V
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					getfield_a_this 5;		// reference SCard/SCard.image4
+					getfield_s_this 21;		// short SCard/SCard.imagelen4
+					sload_2;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					dup;
+					getfield_s 21;		// short SCard/SCard.imagelen4
+					sload_2;
+					sadd;
+					putfield_s 21;		// short SCard/SCard.imagelen4
+					goto_w L9;
+				L4:	sspush 32767;
+					getfield_s_this 19;		// short SCard/SCard.imagelen2
+					ssub;
+					sspush 255;
+					if_scmpge L6;
+				L5:	aload_3;
+					sload 4;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					sload_2;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					aload_1;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sload_2;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					invokespecial 80;		// SCard/SCard.encrypt_AesCipher(Ljavacard/framework/APDU;[BS[B)V
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					getfield_a_this 4;		// reference SCard/SCard.image3
+					getfield_s_this 20;		// short SCard/SCard.imagelen3
+					sload_2;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					dup;
+					getfield_s 20;		// short SCard/SCard.imagelen3
+					sload_2;
+					sadd;
+					putfield_s 20;		// short SCard/SCard.imagelen3
+					goto L9;
+				L6:	sspush 32767;
+					getfield_s_this 18;		// short SCard/SCard.imagelen1
+					ssub;
+					sspush 255;
+					if_scmpge L8;
+				L7:	aload_3;
+					sload 4;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					sload_2;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					aload_1;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sload_2;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					invokespecial 80;		// SCard/SCard.encrypt_AesCipher(Ljavacard/framework/APDU;[BS[B)V
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					getfield_a_this 3;		// reference SCard/SCard.image2
+					getfield_s_this 19;		// short SCard/SCard.imagelen2
+					sload_2;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					dup;
+					getfield_s 19;		// short SCard/SCard.imagelen2
+					sload_2;
+					sadd;
+					putfield_s 19;		// short SCard/SCard.imagelen2
+					goto L9;
+				L8:	aload_3;
+					sload 4;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					sload_2;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					aload_1;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sload_2;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					invokespecial 80;		// SCard/SCard.encrypt_AesCipher(Ljavacard/framework/APDU;[BS[B)V
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					getfield_a_this 2;		// reference SCard/SCard.image1
+					getfield_s_this 18;		// short SCard/SCard.imagelen1
+					sload_2;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					dup;
+					getfield_s 18;		// short SCard/SCard.imagelen1
+					sload_2;
+					sadd;
+					putfield_s 18;		// short SCard/SCard.imagelen1
+				L9:	return;
+		}
+
+		.method private get_img(Ljavacard/framework/APDU;)V {
+			.stack 6;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore_2;
+				L1:	sspush 255;
+					sstore_3;
+				L2:	getfield_s_this 24;		// short SCard/SCard.lenback3
+					ifne L6;
+				L3:	getfield_s_this 25;		// short SCard/SCard.lenback4
+					sspush 255;
+					if_scmpge L5;
+				L4:	getfield_s_this 25;		// short SCard/SCard.lenback4
+					sstore_3;
+				L5:	aload_1;
+					invokevirtual 86;		// setOutgoing()S
+					pop;
+					aload_1;
+					sspush 255;
+					invokevirtual 87;		// setOutgoingLength(S)V
+					getfield_a_this 5;		// reference SCard/SCard.image4
+					getfield_s_this 29;		// short SCard/SCard.pointer4
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					sload_3;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					aload_1;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sload_3;
+					aload_2;
+					sconst_0;
+					invokespecial 81;		// SCard/SCard.decrypt_AesCipher(Ljavacard/framework/APDU;[BS[BS)V
+					aload_1;
+					sconst_0;
+					sload_3;
+					invokevirtual 88;		// sendBytes(SS)V
+					aload_0;
+					dup;
+					getfield_s 29;		// short SCard/SCard.pointer4
+					sspush 255;
+					sadd;
+					putfield_s 29;		// short SCard/SCard.pointer4
+					aload_0;
+					dup;
+					getfield_s 25;		// short SCard/SCard.lenback4
+					sspush 255;
+					ssub;
+					putfield_s 25;		// short SCard/SCard.lenback4
+					goto_w L17;
+				L6:	getfield_s_this 23;		// short SCard/SCard.lenback2
+					ifne L10;
+				L7:	getfield_s_this 24;		// short SCard/SCard.lenback3
+					sspush 255;
+					if_scmpge L9;
+				L8:	getfield_s_this 24;		// short SCard/SCard.lenback3
+					sstore_3;
+				L9:	aload_1;
+					invokevirtual 86;		// setOutgoing()S
+					pop;
+					aload_1;
+					sspush 255;
+					invokevirtual 87;		// setOutgoingLength(S)V
+					getfield_a_this 4;		// reference SCard/SCard.image3
+					getfield_s_this 28;		// short SCard/SCard.pointer3
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					sload_3;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					aload_1;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sload_3;
+					aload_2;
+					sconst_0;
+					invokespecial 81;		// SCard/SCard.decrypt_AesCipher(Ljavacard/framework/APDU;[BS[BS)V
+					aload_1;
+					sconst_0;
+					sload_3;
+					invokevirtual 88;		// sendBytes(SS)V
+					aload_0;
+					dup;
+					getfield_s 28;		// short SCard/SCard.pointer3
+					sspush 255;
+					sadd;
+					putfield_s 28;		// short SCard/SCard.pointer3
+					aload_0;
+					dup;
+					getfield_s 24;		// short SCard/SCard.lenback3
+					sspush 255;
+					ssub;
+					putfield_s 24;		// short SCard/SCard.lenback3
+					goto_w L17;
+				L10:	getfield_s_this 22;		// short SCard/SCard.lenback1
+					ifne L14;
+				L11:	getfield_s_this 23;		// short SCard/SCard.lenback2
+					sspush 255;
+					if_scmpge L13;
+				L12:	getfield_s_this 23;		// short SCard/SCard.lenback2
+					sstore_3;
+				L13:	aload_1;
+					invokevirtual 86;		// setOutgoing()S
+					pop;
+					aload_1;
+					sspush 255;
+					invokevirtual 87;		// setOutgoingLength(S)V
+					getfield_a_this 3;		// reference SCard/SCard.image2
+					getfield_s_this 27;		// short SCard/SCard.pointer2
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					sload_3;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					aload_1;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sload_3;
+					aload_2;
+					sconst_0;
+					invokespecial 81;		// SCard/SCard.decrypt_AesCipher(Ljavacard/framework/APDU;[BS[BS)V
+					aload_1;
+					sconst_0;
+					sload_3;
+					invokevirtual 88;		// sendBytes(SS)V
+					aload_0;
+					dup;
+					getfield_s 27;		// short SCard/SCard.pointer2
+					sspush 255;
+					sadd;
+					putfield_s 27;		// short SCard/SCard.pointer2
+					aload_0;
+					dup;
+					getfield_s 23;		// short SCard/SCard.lenback2
+					sspush 255;
+					ssub;
+					putfield_s 23;		// short SCard/SCard.lenback2
+					goto L17;
+				L14:	getfield_s_this 22;		// short SCard/SCard.lenback1
+					sspush 255;
+					if_scmpge L16;
+				L15:	getfield_s_this 22;		// short SCard/SCard.lenback1
+					sstore_3;
+				L16:	aload_1;
+					invokevirtual 86;		// setOutgoing()S
+					pop;
+					aload_1;
+					sspush 255;
+					invokevirtual 87;		// setOutgoingLength(S)V
+					getfield_a_this 2;		// reference SCard/SCard.image1
+					getfield_s_this 26;		// short SCard/SCard.pointer1
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					sload_3;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					aload_1;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sload_3;
+					aload_2;
+					sconst_0;
+					invokespecial 81;		// SCard/SCard.decrypt_AesCipher(Ljavacard/framework/APDU;[BS[BS)V
+					aload_1;
+					sconst_0;
+					sload_3;
+					invokevirtual 88;		// sendBytes(SS)V
+					aload_0;
+					dup;
+					getfield_s 26;		// short SCard/SCard.pointer1
+					sspush 255;
+					sadd;
+					putfield_s 26;		// short SCard/SCard.pointer1
+					aload_0;
+					dup;
+					getfield_s 22;		// short SCard/SCard.lenback1
+					sspush 255;
+					ssub;
+					putfield_s 22;		// short SCard/SCard.lenback1
+				L17:	return;
+		}
+
+		.method private check_pin(Ljavacard/framework/APDU;S)V {
+			.stack 4;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore_3;
+				L1:	aload_1;
+					invokevirtual 86;		// setOutgoing()S
+					pop;
+					aload_1;
+					sconst_3;
+					invokevirtual 87;		// setOutgoingLength(S)V
+					getfield_a_this 0;		// reference SCard/SCard.pin
+					invokevirtual 89;		// getTriesRemaining()B
+					sstore 4;
+				L2:	sload 4;
+					ifeq L6;
+				L3:	getfield_a_this 0;		// reference SCard/SCard.pin
+					aload_3;
+					sconst_5;
+					sload_2;
+					s2b;
+					invokevirtual 90;		// check([BSB)Z
+					sconst_1;
+					if_scmpne L5;
+				L4:	aload_1;
+					getstatic_a 91;		// reference SCard/SCard.status
+					sconst_0;
+					sconst_1;
+					invokevirtual 92;		// sendBytesLong([BSS)V
+					goto L7;
+				L5:	aload_1;
+					getstatic_a 91;		// reference SCard/SCard.status
+					sload 4;
+					sspush 255;
+					sand;
+					sconst_1;
+					invokevirtual 92;		// sendBytesLong([BSS)V
+					goto L7;
+				L6:	aload_1;
+					getstatic_a 91;		// reference SCard/SCard.status
+					sconst_4;
+					sconst_1;
+					invokevirtual 92;		// sendBytesLong([BSS)V
+				L7:	return;
+		}
+
+		.method private unblock_card(Ljavacard/framework/APDU;)V {
+			.stack 1;
+			.locals 0;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	getfield_a_this 0;		// reference SCard/SCard.pin
+					invokevirtual 93;		// resetAndUnblock()V
+					return;
+		}
+
+		.method private setAesKey(Ljavacard/framework/APDU;[BS)V {
+			.stack 6;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore 4;
+				L1:	getfield_a_this 6;		// reference SCard/SCard.sha
+					aload_2;
+					sconst_0;
+					sload_3;
+					aload 4;
+					sconst_0;
+					invokevirtual 94;		// doFinal([BSS[BS)S
+					sstore 5;
+				L2:	invokestatic 95;		// javacard/framework/JCSystem.beginTransaction()V
+					aload 4;
+					sconst_0;
+					getfield_a_this 1;		// reference SCard/SCard.pintoKey
+					sconst_0;
+					sload 5;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					invokestatic 96;		// javacard/framework/JCSystem.commitTransaction()V
+					invokestatic 39;		// javacard/framework/JCSystem.requestObjectDeletion()V
+					return;
+		}
+
+		.method private encrypt_AesCipher(Ljavacard/framework/APDU;[BS[B)V {
+			.stack 7;
+			.locals 6;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore 5;
+				L1:	getfield_a_this 8;		// reference SCard/SCard.aesKey
+					getfield_a_this 1;		// reference SCard/SCard.pintoKey
+					sconst_0;
+					invokeinterface 3 54 4;		// javacard/security/AESKey
+					sconst_2;
+					sstore 6;
+				L2:	sload_3;
+					ifgt L4;
+				L3:	sspush 26368;
+					invokestatic 43;		// javacard/framework/ISOException.throwIt(S)V
+					goto_w L25;
+				L4:	sload_3;
+					bspush 16;
+					srem;
+					ifne L6;
+				L5:	getfield_a_this 7;		// reference SCard/SCard.aescipher
+					getfield_a_this 8;		// reference SCard/SCard.aesKey
+					sload 6;
+					invokevirtual 98;		// init(Ljavacard/security/Key;B)V
+					getfield_a_this 7;		// reference SCard/SCard.aescipher
+					aload_2;
+					sconst_0;
+					sload_3;
+					aload 4;
+					sconst_0;
+					invokevirtual 99;		// doFinal([BSS[BS)S
+					pop;
+					goto_w L25;
+				L6:	sload_3;
+					bspush 16;
+					if_scmpge L13;
+				L7:	bspush 16;
+					sload_3;
+					ssub;
+					newarray 11;
+					astore 7;
+				L8:	sconst_0;
+					sstore 8;
+				L9:	sload 8;
+					bspush 16;
+					sload_3;
+					ssub;
+					if_scmpge L11;
+				L10:	aload 7;
+					sload 8;
+					sconst_0;
+					bastore;
+					sinc 8 1;
+					goto L9;
+				L11:	getfield_a_this 7;		// reference SCard/SCard.aescipher
+					getfield_a_this 8;		// reference SCard/SCard.aesKey
+					sload 6;
+					invokevirtual 98;		// init(Ljavacard/security/Key;B)V
+					getfield_a_this 7;		// reference SCard/SCard.aescipher
+					aload_2;
+					sconst_0;
+					sload_3;
+					aload 5;
+					sconst_0;
+					invokevirtual 100;		// update([BSS[BS)S
+					pop;
+					getfield_a_this 7;		// reference SCard/SCard.aescipher
+					aload 7;
+					sconst_0;
+					bspush 16;
+					sload_3;
+					ssub;
+					aload 5;
+					sconst_0;
+					invokevirtual 99;		// doFinal([BSS[BS)S
+					pop;
+					aload 5;
+					sconst_0;
+					aload 4;
+					sconst_0;
+					bspush 16;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+				L12:	goto_w L25;
+				L13:	bspush 16;
+					newarray 11;
+					astore 7;
+				L14:	sconst_0;
+					putstatic_s 101;		// short SCard/SCard.count
+					sconst_0;
+					sstore 8;
+				L15:	sload 8;
+					sload_3;
+					if_scmpge_w L25;
+				L16:	aload 7;
+					getstatic_s 101;		// short SCard/SCard.count
+					aload_2;
+					sload 8;
+					baload;
+					bastore;
+					getstatic_s 101;		// short SCard/SCard.count
+					sconst_1;
+					sadd;
+					putstatic_s 101;		// short SCard/SCard.count
+					getstatic_s 101;		// short SCard/SCard.count
+					bspush 16;
+					if_scmpne L18;
+				L17:	getfield_a_this 7;		// reference SCard/SCard.aescipher
+					getfield_a_this 8;		// reference SCard/SCard.aesKey
+					sload 6;
+					invokevirtual 98;		// init(Ljavacard/security/Key;B)V
+					getfield_a_this 7;		// reference SCard/SCard.aescipher
+					aload 7;
+					sconst_0;
+					aload 7;
+					arraylength;
+					aload 5;
+					sload 8;
+					bspush 15;
+					ssub;
+					invokevirtual 99;		// doFinal([BSS[BS)S
+					pop;
+					sconst_0;
+					putstatic_s 101;		// short SCard/SCard.count
+				L18:	sload 8;
+					sload_3;
+					sconst_1;
+					ssub;
+					if_scmpne L24;
+				L19:	bspush 16;
+					getstatic_s 101;		// short SCard/SCard.count
+					ssub;
+					newarray 11;
+					astore 9;
+				L20:	sconst_0;
+					sstore 10;
+				L21:	sload 10;
+					bspush 16;
+					getstatic_s 101;		// short SCard/SCard.count
+					ssub;
+					if_scmpge L23;
+				L22:	aload 9;
+					sload 10;
+					sconst_0;
+					bastore;
+					sinc 10 1;
+					goto L21;
+				L23:	getfield_a_this 7;		// reference SCard/SCard.aescipher
+					getfield_a_this 8;		// reference SCard/SCard.aesKey
+					sload 6;
+					invokevirtual 98;		// init(Ljavacard/security/Key;B)V
+					getfield_a_this 7;		// reference SCard/SCard.aescipher
+					aload 7;
+					sconst_0;
+					getstatic_s 101;		// short SCard/SCard.count
+					aload 5;
+					sload 8;
+					getstatic_s 101;		// short SCard/SCard.count
+					ssub;
+					sconst_1;
+					sadd;
+					invokevirtual 100;		// update([BSS[BS)S
+					pop;
+					getfield_a_this 7;		// reference SCard/SCard.aescipher
+					aload 9;
+					sconst_0;
+					aload 9;
+					arraylength;
+					aload 5;
+					sload 8;
+					getstatic_s 101;		// short SCard/SCard.count
+					ssub;
+					sconst_1;
+					sadd;
+					invokevirtual 99;		// doFinal([BSS[BS)S
+					pop;
+					aload 5;
+					sconst_0;
+					aload 4;
+					sconst_0;
+					sload_3;
+					bspush 16;
+					sadd;
+					getstatic_s 101;		// short SCard/SCard.count
+					ssub;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					goto L25;
+				L24:	sinc 8 1;
+					goto_w L15;
+				L25:	invokestatic 39;		// javacard/framework/JCSystem.requestObjectDeletion()V
+				L26:	goto L30;
+				L27:	astore 5;
+				L28:	aload 5;
+					invokevirtual 102;		// getReason()S
+					sstore 6;
+				L29:	sload 6;
+					invokestatic 43;		// javacard/framework/ISOException.throwIt(S)V
+				L30:	return;
+			.exceptionTable {
+				// start_block end_block handler_block catch_type_index
+				L0 L26 L27 97;
+			}
+		}
+
+		.method private decrypt_AesCipher(Ljavacard/framework/APDU;[BS[BS)V {
+			.stack 7;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore 6;
+				L1:	sconst_1;
+					sstore 7;
+				L2:	sload_3;
+					bspush 16;
+					srem;
+					ifne L4;
+				L3:	getfield_a_this 7;		// reference SCard/SCard.aescipher
+					getfield_a_this 8;		// reference SCard/SCard.aesKey
+					sload 7;
+					invokevirtual 98;		// init(Ljavacard/security/Key;B)V
+					getfield_a_this 7;		// reference SCard/SCard.aescipher
+					aload_2;
+					sconst_0;
+					sload_3;
+					aload 4;
+					sload 5;
+					invokevirtual 99;		// doFinal([BSS[BS)S
+					pop;
+					goto_w L12;
+				L4:	sload_3;
+					bspush 16;
+					if_scmpge L6;
+				L5:	getfield_a_this 7;		// reference SCard/SCard.aescipher
+					getfield_a_this 8;		// reference SCard/SCard.aesKey
+					sload 7;
+					invokevirtual 98;		// init(Ljavacard/security/Key;B)V
+					getfield_a_this 7;		// reference SCard/SCard.aescipher
+					aload_2;
+					sconst_0;
+					bspush 16;
+					aload 6;
+					sconst_0;
+					invokevirtual 99;		// doFinal([BSS[BS)S
+					pop;
+					aload 6;
+					sconst_0;
+					aload 4;
+					sload 5;
+					sload_3;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					goto L12;
+				L6:	sconst_0;
+					putstatic_s 101;		// short SCard/SCard.count
+					sconst_1;
+					sstore 8;
+				L7:	sload 8;
+					sload_3;
+					if_scmpgt L11;
+				L8:	sload 8;
+					bspush 16;
+					srem;
+					ifne L10;
+				L9:	getstatic_s 101;		// short SCard/SCard.count
+					sconst_1;
+					sadd;
+					putstatic_s 101;		// short SCard/SCard.count
+					getfield_a_this 7;		// reference SCard/SCard.aescipher
+					getfield_a_this 8;		// reference SCard/SCard.aesKey
+					sload 7;
+					invokevirtual 98;		// init(Ljavacard/security/Key;B)V
+					getfield_a_this 7;		// reference SCard/SCard.aescipher
+					aload_2;
+					sload 8;
+					bspush 16;
+					ssub;
+					bspush 16;
+					aload 6;
+					sload 8;
+					bspush 16;
+					ssub;
+					invokevirtual 99;		// doFinal([BSS[BS)S
+					pop;
+				L10:	sinc 8 1;
+					goto L7;
+				L11:	getfield_a_this 7;		// reference SCard/SCard.aescipher
+					getfield_a_this 8;		// reference SCard/SCard.aesKey
+					sload 7;
+					invokevirtual 98;		// init(Ljavacard/security/Key;B)V
+					getfield_a_this 7;		// reference SCard/SCard.aescipher
+					aload_2;
+					bspush 16;
+					getstatic_s 101;		// short SCard/SCard.count
+					smul;
+					bspush 16;
+					aload 6;
+					bspush 16;
+					getstatic_s 101;		// short SCard/SCard.count
+					smul;
+					invokevirtual 99;		// doFinal([BSS[BS)S
+					pop;
+					aload 6;
+					sconst_0;
+					aload 4;
+					sload 5;
+					sload_3;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+				L12:	invokestatic 39;		// javacard/framework/JCSystem.requestObjectDeletion()V
+					return;
+		}
+
+		.method private genKeypair(Ljavacard/framework/APDU;)V {
+			.stack 5;
+			.locals 6;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore_2;
+				L1:	new 103;		// javacard/security/KeyPair
+					dup;
+					sconst_1;
+					bspush 8;
+					getfield_s_this 9;		// short SCard/SCard.sigLen
+					smul;
+					invokespecial 104;		// javacard/security/KeyPair.<init>(BS)V
+					astore_3;
+				L2:	aload_3;
+					invokevirtual 105;		// genKeyPair()V
+					invokestatic 95;		// javacard/framework/JCSystem.beginTransaction()V
+					aload_0;
+					sconst_0;
+					putfield_s 12;		// short SCard/SCard.rsaPubKeyLen
+					aload_0;
+					sconst_0;
+					putfield_s 13;		// short SCard/SCard.rsaPriKeyLen
+					invokestatic 96;		// javacard/framework/JCSystem.commitTransaction()V
+					aload_3;
+					invokevirtual 106;		// getPublic()Ljavacard/security/PublicKey;
+					checkcast 0 107;		// T_CLASSORINTERFACE javacard/security/RSAPublicKey
+					astore 4;
+				L3:	sconst_0;
+					sstore 5;
+				L4:	sload 5;
+					aload 4;
+					getfield_a_this 11;		// reference SCard/SCard.rsaPubKey
+					sload 5;
+					invokeinterface 3 107 5;		// javacard/security/RSAPublicKey
+					sadd;
+					sstore 5;
+					sload 5;
+					aload 4;
+					getfield_a_this 11;		// reference SCard/SCard.rsaPubKey
+					sload 5;
+					invokeinterface 3 107 4;		// javacard/security/RSAPublicKey
+					sadd;
+					sstore 5;
+					sconst_0;
+					sstore 6;
+				L5:	aload_3;
+					invokevirtual 108;		// getPrivate()Ljavacard/security/PrivateKey;
+					checkcast 0 109;		// T_CLASSORINTERFACE javacard/security/RSAPrivateKey
+					astore 7;
+				L6:	sload 6;
+					aload 7;
+					getfield_a_this 10;		// reference SCard/SCard.rsaPriKey
+					sload 6;
+					invokeinterface 3 109 5;		// javacard/security/RSAPrivateKey
+					sadd;
+					sstore 6;
+					sload 6;
+					aload 7;
+					getfield_a_this 10;		// reference SCard/SCard.rsaPriKey
+					sload 6;
+					invokeinterface 3 109 4;		// javacard/security/RSAPrivateKey
+					sadd;
+					sstore 6;
+					invokestatic 95;		// javacard/framework/JCSystem.beginTransaction()V
+					aload_0;
+					sload 5;
+					putfield_s 12;		// short SCard/SCard.rsaPubKeyLen
+					aload_0;
+					sload 6;
+					putfield_s 13;		// short SCard/SCard.rsaPriKeyLen
+					invokestatic 96;		// javacard/framework/JCSystem.commitTransaction()V
+					invokestatic 39;		// javacard/framework/JCSystem.requestObjectDeletion()V
+					return;
+		}
+
+		.method private getPublicKey(Ljavacard/framework/APDU;S)V {
+			.stack 5;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore_3;
+				L1:	sspush 128;
+					sstore 4;
+				L2:	aload_3;
+					sconst_2;
+					baload;
+					slookupswitch L6 2 1 L3 2 L4;
+				L3:	getfield_a_this 11;		// reference SCard/SCard.rsaPubKey
+					sconst_0;
+					aload_3;
+					sconst_0;
+					sload 4;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sload 4;
+					invokevirtual 83;		// setOutgoingAndSend(SS)V
+					goto L7;
+				L4:	getfield_s_this 12;		// short SCard/SCard.rsaPubKeyLen
+					sload 4;
+					ssub;
+					sstore 5;
+				L5:	getfield_a_this 11;		// reference SCard/SCard.rsaPubKey
+					sload 4;
+					aload_3;
+					sconst_0;
+					sload 5;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sload 5;
+					invokevirtual 83;		// setOutgoingAndSend(SS)V
+					goto L7;
+				L6:	sspush 27270;
+					invokestatic 43;		// javacard/framework/ISOException.throwIt(S)V
+				L7:	return;
+		}
+
+		.method private update_pin(Ljavacard/framework/APDU;S)V {
+			.stack 5;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore_3;
+				L1:	aload_1;
+					invokevirtual 86;		// setOutgoing()S
+					pop;
+					aload_1;
+					sconst_1;
+					invokevirtual 87;		// setOutgoingLength(S)V
+					aload_3;
+					sconst_5;
+					getstatic_a 49;		// reference SCard/SCard.pintemp
+					sconst_0;
+					sload_2;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					sload_2;
+					bspush 6;
+					if_scmple L4;
+				L2:	sload_2;
+					bspush 68;
+					if_scmpgt L4;
+				L3:	getfield_a_this 0;		// reference SCard/SCard.pin
+					getstatic_a 49;		// reference SCard/SCard.pintemp
+					sconst_0;
+					sload_2;
+					s2b;
+					invokevirtual 79;		// update([BSB)V
+					aload_0;
+					aload_1;
+					getstatic_a 49;		// reference SCard/SCard.pintemp
+					sload_2;
+					invokespecial 78;		// SCard/SCard.setAesKey(Ljavacard/framework/APDU;[BS)V
+					sload_2;
+					putstatic_s 76;		// short SCard/SCard.pinlen
+					aload_1;
+					getstatic_a 91;		// reference SCard/SCard.status
+					sconst_1;
+					sconst_1;
+					invokevirtual 92;		// sendBytesLong([BSS)V
+					goto L5;
+				L4:	aload_1;
+					getstatic_a 91;		// reference SCard/SCard.status
+					sconst_0;
+					sconst_1;
+					invokevirtual 92;		// sendBytesLong([BSS)V
+				L5:	return;
+		}
+
+		.method private update_info(Ljavacard/framework/APDU;S)V {
+			.stack 5;
+			.locals 6;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	sload_2;
+					sconst_4;
+					if_scmpgt L2;
+				L1:	sspush 26368;
+					invokestatic 43;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	sconst_0;
+					dup;
+					sstore 6;
+				L3:	dup;
+					sstore 5;
+				L4:	dup;
+					sstore 4;
+				L5:	sstore_3;
+				L6:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore 7;
+				L7:	aload 7;
+					sconst_5;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					sload_2;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					sconst_0;
+					sstore 8;
+				L8:	sload 8;
+					sload_2;
+					if_scmpge L19;
+				L9:	getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sload 8;
+					baload;
+					bspush 46;
+					if_scmpne L18;
+				L10:	sload_3;
+					ifne L12;
+				L11:	sload 8;
+					sstore_3;
+					sload_3;
+					putstatic_s 72;		// short SCard/SCard.sothelen
+					goto L18;
+				L12:	sload 4;
+					ifne L14;
+				L13:	sload 8;
+					sstore 4;
+					sload 4;
+					sload_3;
+					ssub;
+					sconst_1;
+					ssub;
+					putstatic_s 73;		// short SCard/SCard.hotenlen
+					goto L18;
+				L14:	sload 5;
+					ifne L16;
+				L15:	sload 8;
+					sstore 5;
+					sload 5;
+					sload 4;
+					ssub;
+					sconst_1;
+					ssub;
+					putstatic_s 74;		// short SCard/SCard.ngaysinhlen
+					goto L18;
+				L16:	sload 6;
+					ifne L18;
+				L17:	sload 8;
+					sstore 6;
+					sload 6;
+					sload 5;
+					ssub;
+					sconst_1;
+					ssub;
+					putstatic_s 75;		// short SCard/SCard.chucvulen
+				L18:	sinc 8 1;
+					goto L8;
+				L19:	getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					getstatic_a 52;		// reference SCard/SCard.sothe
+					sconst_0;
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sload_3;
+					sconst_1;
+					sadd;
+					getstatic_a 55;		// reference SCard/SCard.hoten
+					sconst_0;
+					getstatic_s 73;		// short SCard/SCard.hotenlen
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sload 4;
+					sconst_1;
+					sadd;
+					getstatic_a 56;		// reference SCard/SCard.ngaysinh
+					sconst_0;
+					getstatic_s 74;		// short SCard/SCard.ngaysinhlen
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sload 5;
+					sconst_1;
+					sadd;
+					getstatic_a 57;		// reference SCard/SCard.chucvu
+					sconst_0;
+					getstatic_s 75;		// short SCard/SCard.chucvulen
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					aload_1;
+					getstatic_a 52;		// reference SCard/SCard.sothe
+					getstatic_s 72;		// short SCard/SCard.sothelen
+					getstatic_a 52;		// reference SCard/SCard.sothe
+					invokespecial 80;		// SCard/SCard.encrypt_AesCipher(Ljavacard/framework/APDU;[BS[B)V
+					aload_0;
+					aload_1;
+					getstatic_a 55;		// reference SCard/SCard.hoten
+					getstatic_s 73;		// short SCard/SCard.hotenlen
+					getstatic_a 55;		// reference SCard/SCard.hoten
+					invokespecial 80;		// SCard/SCard.encrypt_AesCipher(Ljavacard/framework/APDU;[BS[B)V
+					aload_0;
+					aload_1;
+					getstatic_a 56;		// reference SCard/SCard.ngaysinh
+					getstatic_s 74;		// short SCard/SCard.ngaysinhlen
+					getstatic_a 56;		// reference SCard/SCard.ngaysinh
+					invokespecial 80;		// SCard/SCard.encrypt_AesCipher(Ljavacard/framework/APDU;[BS[B)V
+					aload_0;
+					aload_1;
+					getstatic_a 57;		// reference SCard/SCard.chucvu
+					getstatic_s 75;		// short SCard/SCard.chucvulen
+					getstatic_a 57;		// reference SCard/SCard.chucvu
+					invokespecial 80;		// SCard/SCard.encrypt_AesCipher(Ljavacard/framework/APDU;[BS[B)V
+					return;
+		}
+
+		.method private setCheckIn(Ljavacard/framework/APDU;S)V {
+			.stack 5;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore_3;
+				L1:	sload_2;
+					putstatic_s 32;		// short SCard/SCard.checkinlen
+					aload_1;
+					invokevirtual 86;		// setOutgoing()S
+					pop;
+					aload_1;
+					bspush 48;
+					invokevirtual 87;		// setOutgoingLength(S)V
+					aload_3;
+					sconst_5;
+					getstatic_a 58;		// reference SCard/SCard.checkin
+					sconst_0;
+					sload_2;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					return;
+		}
+
+		.method private getTimeCheckIn(Ljavacard/framework/APDU;)V {
+			.stack 5;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore_2;
+				L1:	getstatic_a 58;		// reference SCard/SCard.checkin
+					sconst_0;
+					aload_2;
+					sconst_0;
+					getstatic_s 32;		// short SCard/SCard.checkinlen
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					getstatic_s 32;		// short SCard/SCard.checkinlen
+					invokevirtual 83;		// setOutgoingAndSend(SS)V
+					return;
+		}
+
+		.method private setCheckOut(Ljavacard/framework/APDU;S)V {
+			.stack 5;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore_3;
+				L1:	aload_1;
+					invokevirtual 86;		// setOutgoing()S
+					pop;
+					aload_1;
+					bspush 48;
+					invokevirtual 87;		// setOutgoingLength(S)V
+					aload_3;
+					sconst_5;
+					getstatic_a 111;		// reference SCard/SCard.checkout
+					sconst_0;
+					sload_2;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					return;
+		}
+
+		.method private getTimeCheckOut(Ljavacard/framework/APDU;)V {
+			.stack 5;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore_2;
+				L1:	getstatic_a 111;		// reference SCard/SCard.checkout
+					sconst_0;
+					aload_2;
+					sconst_0;
+					getstatic_s 34;		// short SCard/SCard.checkoutlen
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					getstatic_s 34;		// short SCard/SCard.checkoutlen
+					invokevirtual 83;		// setOutgoingAndSend(SS)V
+					return;
+		}
+
+		.method private createRamData(Ljavacard/framework/APDU;)V {
+			.stack 4;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore_2;
+				L1:	sconst_3;
+					newarray 11;
+					dup;
+					sconst_0;
+					sconst_1;
+					bastore;
+					dup;
+					sconst_1;
+					sconst_2;
+					bastore;
+					dup;
+					sconst_2;
+					sconst_3;
+					bastore;
+					astore_3;
+				L2:	aload_0;
+					sconst_1;
+					invokestatic 110;		// javacard/security/RandomData.getInstance(B)Ljavacard/security/RandomData;
+					putfield_a 30;		// reference SCard/SCard.ranData
+					getfield_a_this 30;		// reference SCard/SCard.ranData
+					aload_3;
+					sconst_0;
+					aload_3;
+					arraylength;
+					invokevirtual 112;		// setSeed([BSS)V
+					sconst_3;
+					sstore 4;
+				L3:	getfield_a_this 30;		// reference SCard/SCard.ranData
+					aload_2;
+					sconst_0;
+					sload 4;
+					invokevirtual 113;		// generateData([BSS)V
+					aload_1;
+					sconst_0;
+					sload 4;
+					invokevirtual 83;		// setOutgoingAndSend(SS)V
+					return;
+		}
+
+		.method private createSig(Ljavacard/framework/APDU;S)V {
+			.stack 6;
+			.locals 5;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore_3;
+				L1:	bspush 6;
+					newarray 11;
+					astore 4;
+				L2:	bspush 6;
+					sstore 5;
+				L3:	sspush 256;
+					newarray 11;
+					astore 6;
+				L4:	aload_3;
+					sconst_5;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					sload_2;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sconst_0;
+					aload 4;
+					sconst_0;
+					sload 5;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					getfield_a_this 16;		// reference SCard/SCard.tempBuffer
+					sload 5;
+					getstatic_a 49;		// reference SCard/SCard.pintemp
+					sconst_0;
+					sload_2;
+					sload 5;
+					ssub;
+					invokestatic 71;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					getfield_a_this 0;		// reference SCard/SCard.pin
+					getstatic_a 49;		// reference SCard/SCard.pintemp
+					sconst_0;
+					getstatic_s 76;		// short SCard/SCard.pinlen
+					s2b;
+					invokevirtual 90;		// check([BSB)Z
+					sconst_1;
+					if_scmpne L8;
+				L5:	aload_0;
+					aload_1;
+					getfield_a_this 10;		// reference SCard/SCard.rsaPriKey
+					getfield_s_this 13;		// short SCard/SCard.rsaPriKeyLen
+					aload 6;
+					sconst_0;
+					invokespecial 81;		// SCard/SCard.decrypt_AesCipher(Ljavacard/framework/APDU;[BS[BS)V
+					sconst_5;
+					sspush 1024;
+					sconst_0;
+					invokestatic 53;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+					checkcast 0 109;		// T_CLASSORINTERFACE javacard/security/RSAPrivateKey
+					astore 7;
+				L6:	aload 7;
+					aload 6;
+					sconst_0;
+					sspush 128;
+					invokeinterface 4 109 7;		// javacard/security/RSAPrivateKey
+					aload 7;
+					aload 6;
+					sspush 128;
+					sspush 128;
+					invokeinterface 4 109 6;		// javacard/security/RSAPrivateKey
+					getfield_a_this 15;		// reference SCard/SCard.rsaSig
+					aload 7;
+					sconst_1;
+					invokevirtual 114;		// init(Ljavacard/security/Key;B)V
+					getfield_a_this 15;		// reference SCard/SCard.rsaSig
+					aload 4;
+					sconst_0;
+					sload 5;
+					getfield_a_this 14;		// reference SCard/SCard.sig_buffer
+					sconst_0;
+					invokevirtual 115;		// sign([BSS[BS)S
+					pop;
+					aload_1;
+					invokevirtual 86;		// setOutgoing()S
+					pop;
+					aload_1;
+					getfield_s_this 9;		// short SCard/SCard.sigLen
+					invokevirtual 87;		// setOutgoingLength(S)V
+					aload_1;
+					getfield_a_this 14;		// reference SCard/SCard.sig_buffer
+					sconst_0;
+					getfield_s_this 9;		// short SCard/SCard.sigLen
+					invokevirtual 92;		// sendBytesLong([BSS)V
+				L7:	goto L9;
+				L8:	aload_1;
+					getstatic_a 91;		// reference SCard/SCard.status
+					sconst_0;
+					sconst_1;
+					invokevirtual 92;		// sendBytesLong([BSS)V
+				L9:	invokestatic 39;		// javacard/framework/JCSystem.requestObjectDeletion()V
+					return;
+		}
+
+		.method private option_sign(Ljavacard/framework/APDU;S)V {
+			.stack 3;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 41;		// getBuffer()[B
+					astore_3;
+				L1:	aload_3;
+					sconst_2;
+					baload;
+					ifne L3;
+				L2:	aload_0;
+					aload_1;
+					invokespecial 116;		// SCard/SCard.createRamData(Ljavacard/framework/APDU;)V
+				L3:	aload_3;
+					sconst_2;
+					baload;
+					sconst_1;
+					if_scmpne L5;
+				L4:	aload_0;
+					aload_1;
+					sload_2;
+					invokespecial 117;		// SCard/SCard.createSig(Ljavacard/framework/APDU;S)V
+				L5:	return;
+		}
+
+	}
+
+}
